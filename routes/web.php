@@ -7,6 +7,7 @@ use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\KhoahocController;
 use App\Http\Controllers\gioithieucontroller;
 use App\Http\Controllers\DangkyController;
+use App\Http\Controllers\khoahocOnline;
 use App\Http\Controllers\UsermanagerController;
 use App\Http\Controllers\UserController;
 
@@ -87,3 +88,11 @@ Route::post('/save-infor', [UsermanagerController::class,'save_infor']);
 Route::get('/check-course', [UsermanagerController::class,'check_course']);
 Route::get('/change-password-user', [UsermanagerController::class,'change_password_user']);
 Route::post('/update-password-user', [UsermanagerController::class,'update_password_user']);
+
+//Khoa hoc online
+Route::get('/khonline',[CourseController::class,'khonline']);
+Route::get('/ctkhonl',[CourseController::class,'ctkhonl']);
+Route::get('/all-khonl',[CourseController::class,'all_khonl']);
+Route::get('/add-khonl',[CourseController::class,'add_khonl']);
+Route::post('/save-khonl', [CourseController::class, 'save_khonl']);
+

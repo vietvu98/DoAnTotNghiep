@@ -39,7 +39,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -79,6 +79,20 @@
                 </div>
             </li>
             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
+                    aria-expanded="true" aria-controls="collapseFive">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Khóa học trực tuyến</span>
+                </a>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="{{ URL::to('/add-khonl') }}">Thêm khóa học trực tuyến</a>
+                        <a class="collapse-item" href="{{ URL::to('/all-khonl') }}">Các khóa học trực tuyến</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
                     aria-expanded="true" aria-controls="collapseFour">
                     <i class="fas fa-fw fa-cog"></i>
@@ -111,7 +125,7 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-           
+
 
 
         </ul>
@@ -173,7 +187,7 @@
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                        
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -183,22 +197,22 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-black"></i>
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    <?php 
+                                    <?php
                                     $tentk = Session::get('tentk');
                                     $matk = Session::get('matk');
                                     echo $tentk;
                                  ?></span>
-                                
+
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                
+
                                 <a class="dropdown-item" href="{{URL::to('/change-password')}}">
                                     <i class="fas fa-unlock fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Đổi mật khẩu
                                 </a>
-                                
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -229,7 +243,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+
                     </div>
                 </div>
             </footer>

@@ -25,6 +25,11 @@
 
     <link rel="stylesheet" href="{{ asset('public/frontend/assets/css/mobster.css') }}">
 
+
+    <link href="{{ asset ('public/frontend/khonl/css/vendor/font-awesome.css') }}" rel="stylesheet" />
+    <link href="{{ asset ('public/frontend/khonl/css/vendor/slick.css') }}" rel="stylesheet" />
+    <link href="{{ asset ('public/frontend/khonl/css/vendor/slick-theme.css') }}" rel="stylesheet" />
+    <link href="{{ asset ('public/frontend/khonl/css/main.css') }}" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         .galleryContainer {
@@ -302,7 +307,7 @@
 </head>
 
 <body>
-   
+
     <nav class="navbar navbar-expand-lg navbar-dark navbar-floating">
         <div class="container">
             <a class="navbar-brand" href="{{ URL::to('/gt') }}">
@@ -323,14 +328,21 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @foreach ($all_daotao as $key=> $value)
                             <a class="dropdown-item" href="{{URL::to('/khoahoc/'.$value->madaotao)}}">{{$value->tendaotao}}</a>
+
                             @endforeach
-                          
+
                         </div>
                       </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ URL::to('/khonline') }}">Khóa học trực tuyến</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ URL::to('') }}">Bài kiểm tra tham khảo</a>
+                    </li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="{{ URL::to('/gioithieu') }}">Giới thiệu</a>
                     </li>
-                    
+
                 </ul>
                 <?php
                 $tentk_user = Session::get('tentk_user');
@@ -360,7 +372,7 @@
 
                                     <a class="nav-link" href="{{URL::to('/user-manager')}}"><i class="fa fa-user"></i> Thông tin </a>
 
-                                    
+
 
                                     <a class="nav-link" href="{{ URL::to('/dangxuat') }}"><i
                                             class="fa fa-power-off">Đăng
@@ -393,7 +405,7 @@
                         <li><strong>Email: </strong>contact@shtp-training.edu.vn</li>
                     </ul>
                 </div>
-                
+
                 <div class="col-md-6 col-lg-4 py-3">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4264636199064!2d106.78374351535652!3d10.855132560702963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe1eceda934207c2c!2sSaigon%20Hi-Tech%20Park%20Training%20Center!5e0!3m2!1svi!2s!4v1611285799798!5m2!1svi!2s" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 
@@ -401,7 +413,7 @@
                     <div class="mt-4">
                         <a href="https://www.facebook.com/SHTP.Training" class="btn btn-fab btn-primary fg-white"><span class="mai-logo-facebook"></span></a>
                         <a href="https://www.facebook.com/vieclam.shtp/" class="btn btn-fab btn-primary fg-white"><span class="mai-logo-facebook">Job</span></a>
-                        
+
                     </div>
                 </div>
             </div>
@@ -414,7 +426,7 @@
 
 
     </div>
-    
+
 
     <script src="{{ asset('public/frontend/assets/js/jquery-3.5.1.min.js') }}"></script>
 
@@ -425,7 +437,15 @@
     <script src="{{ asset('public/frontend/assets/vendor/wow/wow.min.js') }}"></script>
 
     <script src="{{ asset('public/frontend/assets/js/mobster.js') }}"></script>
-    
+
+    <script src="{{ asset('public/frontend/khonl/js/vendor/jquery-3.1.0.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/khonl/js/vendor/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/khonl/js/vendor/tether.js') }}"></script>
+    {{-- <script src="{{ asset('public/frontend/khonl/js/vendor/bootstrap.js') }}"></script> --}}
+    <script src="{{ asset('public/frontend/khonl/js/vendor/slick.js') }}"></script>
+    <script src="{{ asset('public/frontend/khonl/js/vendor/isotope.pkgd.min.js')}}"></script>
+    <script src="{{ asset('public/frontend/khonl/js/main.js') }}"></script>
+
     <script>
         var slideIndex, slides, dots, captionText;
 

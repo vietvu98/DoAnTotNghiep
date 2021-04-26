@@ -221,4 +221,56 @@ class CourseController extends Controller
         return redirect('/all-daotao');
 
     }
+
+//Khóa học trực tuyến
+    public function khonline(){
+        $data = DB::table('daotao')->get();
+        return view('KHonline.khoahoc_onl')->with('all_daotao',$data);
+    }
+    public function ctkhonl(){
+        $data = DB::table('daotao')->get();
+        return view('KHonline.ctkhonl')->with('all_daotao',$data);
+    }
+    public function add_khonl(){
+        $this->AuthLogin();
+        $data_daotao = DB::table('daotao')->get();
+        $manage_daotao = view('adminpages.add_khonl')->with('all_daotao',$data_daotao);
+        return view('welcome')->with('adminpages.add_khonl',$manage_daotao);
+    }
+    public function save_khonl(Request $request){
+        $this->AuthLogin();
+        $data = array();
+        $data['tenkh_onl'] = $request->txtTenkhoahoconl;
+        $data['Mota'] = $request->txtMota;
+        $data['anhdaidien'] = $request->imgKhoaHoconl;
+        $data['hocphi'] = $request->txtHocphionl;
+        $data['madaotao'] = $request->slDaotao;
+        $get_image = $request->file('imgKhoaHoconl');
+        if($get_image){
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image = $name_image.'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public/upload/khonlimage',$new_image);
+            $data['anhdaidien']=$new_image;
+
+            DB::table('khonl')->insert($data);
+            Session::put('message',"Đã thêm!");
+            return redirect('all_khonl');
+        }
+        else{
+            $data['anhdaidien']=null;
+            DB::table('khonl')->insert($data);
+            Session::put('message',"Đã thêm!");
+            return redirect('all_khonl');
+        }
+    }
+    public function all_khonl(){
+        $this->AuthLogin();
+        $all_khonl = DB::table('khonl')->get();
+        $manager_khonl = view('adminpages.all_khonl')->with('all_khonl',$all_khonl);
+        return view('welcome')->with('adminpages.allcourse',$manager_khonl);
+    }
 }
+
+
+

@@ -13,7 +13,7 @@
                             <h3 class="mb-4 fw-medium">Chi tiết khoá học</h3>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb breadcrumb-dark justify-content-center bg-transparent">
-                                    <li class="breadcrumb-item"><a href="{{URL::to('/khoahoc')}}">Khoá học</a></li>
+                                    <li class="breadcrumb-item"><a href="{{URL::to('/khoahoc/')}}">Khoá học</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Chi tiết khoá học</li>
                                 </ol>
                             </nav>
@@ -47,7 +47,7 @@
                                         </div>
                                         by <a href="#">Admin</a>
                                     </div>
-                                    
+
                                 </div>
                                 <div class="entry-content">
                                     <p style="font-size: 20px; font-weight: bold">1.Mục tiêu khoá học</p>
@@ -70,7 +70,7 @@
 
                             <div class="comment-form-wrap pt-5">
 
-                                
+
                                 <div class="form-group">
                                     <a class="btn btn-primary" id="dangky_kh"  data-target="#exampleModal" href="{{ URL::to('/add_khoahoc/' . $values->makh) }}"
                                         style="color: white">Đăng ký ngay</a>
@@ -83,7 +83,7 @@
                                 ?>
                                 <script>
                                     alert("Đăng ký thành công");
-                
+
                                 </script>
                                 <?php
                                 Session::put('thanhcong',null);
@@ -92,7 +92,7 @@
                                 ?>
                                 <script>
                                     alert("Đã đăng ký khoá học này rồi");
-                
+
                                 </script>
                                 <?php
                                 Session::put('da_dk',null);
@@ -101,10 +101,10 @@
                                 ?>
                                 <script>
                                     alert("Hết hạn đăng ký");
-                
+
                                 </script>
                                 <?php
-                               
+
                                 Session::put('hethan',null);
                             }
                         ?>
@@ -120,7 +120,7 @@
                                 {{ csrf_field() }}
                                 <h3 class="widget-title">Search</h3>
                                 <div class="form-group">
-                                    
+
                                     <input type="text" class="form-control" name="txtTimkiem" placeholder="Type a keyword and hit enter">
                                     <button class="icon mai-search" style="border:none;background:transparent; outline:none"></button>
                                 </div>
@@ -138,19 +138,19 @@
                                     <div class="blog-title mb-2"><a href="{{URL::to('/chitietkhoahoc/'.$kh->makh)}}">{{ $kh->tenkh}}</a></div>
                                     <div class="meta">
                                         <a href="{{URL::to('/chitietkhoahoc/'.$kh->makh)}}"><span class="icon-calendar"></span> {{$kh->lichkhaigiang}}</a>
-                                        
+
                                     </div>
                                 </div>
                             </div>
                             @endforeach
-                            
+
                         </div>
 
-                        
+
                     </div> <!-- end sidebar -->
 
                 </div> <!-- .row -->
-                
+
             </div>
         </div>
 
