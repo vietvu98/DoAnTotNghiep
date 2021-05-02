@@ -24,11 +24,11 @@
                                 @foreach($all_khonl as $key => $khonl)
                                 <tr>
                                     <td>{{$khonl->tenkh_onl}}</td>
-                                    <td>{{$khonl->Mota}}</td>
+                                    <td style="width: 50%">{{$khonl->Mota}} </td>
                                     <td>{{$khonl->hocphi}}</td>
                                     <td><img src="{{URL::to('public/upload/khonlimage/'.$khonl->anhdaidien)}}" alt="" style="width: 70%"></td>
-                                    {{-- <td><a href="{{URL::to('/edit-course/'.$course->makh)}}"><i class="fas fa-pen-square"></i></a>
-                                        <a href="{{URL::to('/delete-course/'.$course->makh)}}" onclick="return confirm('Are you sure to delete?')"><i class="fas fa-eraser"></i></a></td> --}}
+                                    <td><a href="{{URL::to('/edit-khonl/'.$khonl->makh_onl)}}"><i class="fas fa-pen-square"></i></a>
+                                        <a href="{{URL::to('/delete-khonl/'.$khonl->makh_onl)}}" onclick="return confirm('Are you sure to delete?')"><i class="fas fa-eraser"></i></a></td>
                                 </tr>
                                 @endforeach
                             </tbody>

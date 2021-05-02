@@ -95,4 +95,6 @@ Route::get('/ctkhonl',[CourseController::class,'ctkhonl']);
 Route::get('/all-khonl',[CourseController::class,'all_khonl']);
 Route::get('/add-khonl',[CourseController::class,'add_khonl']);
 Route::post('/save-khonl', [CourseController::class, 'save_khonl']);
-
+Route::get('/edit-khonl/{makh_onl}', [CourseController::class, 'edit_khonl']);
+Route::post('/update-khonl/{makh_onl}', [CourseController::class, 'update_khonl']);
+Route::get('/delete-khonl/{makh_onl}', [CourseController::class, 'delete_khonl']);
