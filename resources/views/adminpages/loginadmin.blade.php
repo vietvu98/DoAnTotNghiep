@@ -16,7 +16,7 @@
         <div class="form-container sign-up-container">
             <form action="#" method="POST">
                 <h2>Quên mật khẩu?</h2>
-                
+
                 <span>Hoặc sử dụng email để đăng ký</span>
                 <input type="text" placeholder="Tên tài khoản" name="txtTenTK"/>
                 <input type="email" placeholder="Email" name="txtEmail" />
@@ -69,10 +69,10 @@
 
     <footer>
         <p>
-            Nguyễn Viết Vũ - Phạm Duy Tấn
+            Nguyễn Viết Vũ 
         </p>
     </footer>
-    
+
     <script src="{{ asset('public/backend/js/login.js') }}"></script>
 </body>
 

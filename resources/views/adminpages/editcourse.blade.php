@@ -38,11 +38,11 @@
                         <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtThoiluonghoc" value="{{$edit_values->thoiluonghoc}}"
                                 placeholder="Thời lượng học" class="form-control" required></div>
                     </div>
-                    
+
 
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Mục tiêu khoá học</label></div>
-                        <div class="col-12 col-md-9"><textarea name="txtMuctieu" id="textarea-input" rows="9" 
+                        <div class="col-12 col-md-9"><textarea name="txtMuctieu" id="textarea-input" rows="9"
                                 placeholder="Mục tiêu khoá học" class="form-control" required>{{$edit_values->muctieukh}}</textarea></div>
                     </div>
                     <div class="row form-group">
@@ -52,22 +52,26 @@
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="select" class=" form-control-label">Đào tạo</label></div>
-                        <div class="col-12 col-md-9">
-                            
-                            <select name="slDaotao" id="select" class="form-control">
+                        <div class="col-12 col-md-9" >
+
+                            <select name="slDaotao" id="select"  class="form-control" >
                                 @foreach ($all_daotao as $key => $value)
+                                @if($edit_values->madaotao == $value->madaotao)
+                                <option value="{{$value->madaotao}}"selected>{{$value->tendaotao}}</option>
+                                @else
                                 <option value="{{$value->madaotao}}">{{$value->tendaotao}}</option>
+                                @endif
                                 @endforeach
                             </select>
-                           
-                            
                         </div>
                     </div>
-                    
+
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="file-multiple-input" class=" form-control-label">Hình ảnh</label></div>
                         <div class="col-12 col-md-9"><input type="file" id="file-multiple-input" name="imgKhoaHoc"  required
-                                multiple="" class="form-control-file"></div>
+                                multiple="" class="form-control-file">
+                                <img src="{{URL::to('public/upload/courseimage/'.$edit_values->anhdaidien)}}" alt="" style="width: 30%">
+                            </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm">
                         <i class="fa fa-dot-circle-o"></i> Sửa khoá học

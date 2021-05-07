@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">Khoá học trực tuyến</strong>
+                        <strong class="card-title">Danh mục khoá học trực tuyến</strong>
                     </div>
                     <div class="card-body">
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -24,7 +24,9 @@
                                 @foreach($all_khonl as $key => $khonl)
                                 <tr>
                                     <td>{{$khonl->tenkh_onl}}</td>
-                                    <td style="width: 50%">{{$khonl->Mota}} </td>
+                                    <td style="width: 50%">
+                                        <?php echo $khonl->Mota?>
+                                    </td>
                                     <td>{{$khonl->hocphi}}</td>
                                     <td><img src="{{URL::to('public/upload/khonlimage/'.$khonl->anhdaidien)}}" alt="" style="width: 70%"></td>
                                     <td><a href="{{URL::to('/edit-khonl/'.$khonl->makh_onl)}}"><i class="fas fa-pen-square"></i></a>

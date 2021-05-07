@@ -4,7 +4,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <strong>Tạo khoá học</strong>
+                <strong>Thêm khoá học</strong>
             </div>
             <div class="card-body card-block">
                 <form action="{{URL::to('/save-course')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
@@ -37,29 +37,29 @@
                         <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtThoiluonghoc"
                                 placeholder="Thời lượng học" class="form-control" required></div>
                     </div>
-                    
+
 
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Mục tiêu khoá học</label></div>
-                        <div class="col-12 col-md-9"><textarea name="txtMuctieu" id="textarea-input" rows="9"
+                        <div class="col-12 col-md-9"><textarea name="txtMuctieu" id="ckeditor1"
                                 placeholder="Mục tiêu khoá học" class="form-control" required></textarea></div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Nội dung giảng dạy</label></div>
-                        <div class="col-12 col-md-9"><textarea name="txtNoidung" id="textarea-input" rows="9"
+                        <div class="col-12 col-md-9"><textarea name="txtNoidung" id="ckeditor2"
                                 placeholder="Nội dung giảng dạy" class="form-control" required></textarea></div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="select" class=" form-control-label">Đào tạo</label></div>
                         <div class="col-12 col-md-9">
-                            
+
                             <select name="slDaotao" id="select" class="form-control">
                                 @foreach ($all_daotao as $key => $value)
                                 <option value="{{$value->madaotao}}">{{$value->tendaotao}}</option>
                                 @endforeach
                             </select>
-                           
-                            
+
+
                         </div>
                     </div>
                     <div class="row form-group">
@@ -75,9 +75,9 @@
                     </button>
                 </form>
             </div>
-           
+
         </div>
-        
+
     </div>
 
 @endsection

@@ -98,3 +98,13 @@ Route::post('/save-khonl', [CourseController::class, 'save_khonl']);
 Route::get('/edit-khonl/{makh_onl}', [CourseController::class, 'edit_khonl']);
 Route::post('/update-khonl/{makh_onl}', [CourseController::class, 'update_khonl']);
 Route::get('/delete-khonl/{makh_onl}', [CourseController::class, 'delete_khonl']);
+//Bài học online
+// Route::get('/khonline',[CourseController::class,'khonline']);
+// Route::get('/ctkhonl',[CourseController::class,'ctkhonl']);
+Route::get('/allbaihoc',[CourseController::class,'all_baihoc']);
+Route::get('/add-baihoc',[CourseController::class,'add_baihoc']);
+Route::get('/huy-baihoc',[CourseController::class,'huyBH']);
+Route::post('/save-baihoc', [CourseController::class, 'save_baihoc']);
+Route::get('/edit-baihoc/{mabh}', [CourseController::class, 'edit_baihoc']);
+Route::post('/update-baihoc/{mabh}', [CourseController::class, 'update_baihoc']);
+Route::get('/delete-baihoc/{mabh}', [CourseController::class, 'delete_baihoc']);

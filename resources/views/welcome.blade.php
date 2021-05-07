@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Trang quản lý - Admin</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('public/backend/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -89,6 +89,20 @@
 
                         <a class="collapse-item" href="{{ URL::to('/add-khonl') }}">Thêm khóa học trực tuyến</a>
                         <a class="collapse-item" href="{{ URL::to('/all-khonl') }}">Các khóa học trực tuyến</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
+                    aria-expanded="true" aria-controls="collapseSix">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Bài học trực tuyến</span>
+                </a>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="{{ URL::to('/add-baihoc') }}">Thêm bài học trực tuyến</a>
+                        <a class="collapse-item" href="{{ URL::to('/allbaihoc') }}">Các bài học trực tuyến</a>
                     </div>
                 </div>
             </li>
@@ -228,7 +242,13 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                    <?php
+                    $message = Session::get('message');
+                    if ($message) {
+                    echo '<span style="color:#ff8585;">' . $message . '</span>';
+                    Session::put('message', null);
+                    }
+                    ?>
 
 
                     @yield('admin_content')
@@ -296,7 +316,16 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('public/backend/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('public/backend/js/demo/chart-pie-demo.js') }}"></script>
-
+       {{-- ckeditor --}}
+       <script src="{{ asset('public/backend/ckeditor/ckeditor.js') }}"></script>
+       <script>
+           CKEDITOR.replace('ckeditor');
+           CKEDITOR.replace('ckeditor1');
+           CKEDITOR.replace('ckeditor2');
+           CKEDITOR.replace('ckeditor3');
+           CKEDITOR.replace('ckeditor4');
+           CKEDITOR.replace('ckeditor5');
+       </script>
 </body>
 
 </html>

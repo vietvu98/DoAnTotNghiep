@@ -4,7 +4,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <strong>Tạo khoá học trực tuyến</strong>
+                <strong>Thêm khoá học trực tuyến</strong>
             </div>
             <div class="card-body card-block">
                 <form action="{{URL::to('/save-khonl')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
@@ -16,7 +16,7 @@
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Mô tả</label></div>
-                        <div class="col-12 col-md-9"><textarea name="txtMota" id="textarea-input" rows="9"
+                        <div class="col-12 col-md-9"><textarea name="txtMota" id="ckeditor3"
                                 placeholder="Mô tả" class="form-control" required></textarea></div>
                     </div>
                     <div class="row form-group">

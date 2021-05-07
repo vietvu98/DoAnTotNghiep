@@ -7,7 +7,7 @@
             <strong>Đổi mật khẩu</strong>
         </div>
         <div class="card-body card-block">
-            
+
             <form action="{{URL::to('/update-password')}}" method="post"  class="form-horizontal">
                 {{ csrf_field() }}
                 <div class="row form-group">
@@ -32,6 +32,7 @@
                 <button type="reset" class="btn btn-danger btn-sm">
                     <i class="fa fa-ban"></i> Huỷ
                 </button>
+
             </form>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                 <script>
@@ -39,17 +40,17 @@
                         if ($('#mk_moi').val() == $('#xacnhan').val()) {
                             $('#message').html('Matching').css('color', 'green');
                             $("#submit").attr("disabled", false);
-                           
+
                         } else
                             $('#message').html('Not Matching').css('color', 'red');
-                           
+
                     });
 
                 </script>
         </div>
-       
+
     </div>
-    
+
 </div>
 
 
