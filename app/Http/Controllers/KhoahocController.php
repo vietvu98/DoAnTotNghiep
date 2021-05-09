@@ -92,4 +92,6 @@ class KhoahocController extends Controller
         $manage_khoahoc = view('userpages.khoahoc')->with('all_kh',$all_khoahoc);
         return view('welcomeuser')->with('userpages.khoahoc',$manage_khoahoc);
     }
+
+  
 }

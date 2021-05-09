@@ -225,11 +225,13 @@ class CourseController extends Controller
 //Khóa học trực tuyến
     public function khonline(){
         $data = DB::table('daotao')->get();
-        return view('KHonline.khoahoc_onl')->with('all_daotao',$data);
+        $all_khonl = DB::table('khonl')->get();
+        return view('KHonline.khoahoc_onl')->with('all_onl',$all_khonl)->with('all_daotao',$data);
     }
     public function ctkhonl(){
         $data = DB::table('daotao')->get();
-        return view('KHonline.ctkhonl')->with('all_daotao',$data);
+        $ctkh_onl = DB::table('khonl')->get();
+        return view('KHonline.ctkhonl')->with('ctkh_onl',$ctkh_onl)->with('all_daotao',$data);
     }
     public function add_khonl(){
         $this->AuthLogin();
@@ -394,6 +396,27 @@ public function delete_baihoc($mabh)
     Session::put('message',"Đã xoá !");
     return redirect('/allbaihoc');
 }
+  // Khoa hoc online
+  public function khonl($madaotao)
+  {
+
+      $all_khonl = DB::table('khonl')->where('madaotao',$madaotao)->get();
+      $data_daotao = DB::table('daotao')->get();
+        // echo '<pre>';
+        // print_r($all_khonl);
+        // echo '</pre>';
+      return view('KHonline.khoahoc_onl')->with('all_onl',$all_khonl)->with('all_daotao',$data_daotao);
+  }
+  public function chitietkhonl($makh_onl)
+  {
+
+    $ctkh_onl = DB::table('khonl')->join('daotao','daotao.madaotao','=','khonl.madaotao')->where('makh_onl',$makh_onl)->get();
+    $all_daotao = DB::table('daotao')->get();
+    // echo '<pre>';
+    // print_r($ctkh_onl);
+    // echo '</pre>';
+     return view('KHonline.ctkhonl', compact('ctkh_onl','all_daotao'));
+  }
 }
 
 

@@ -302,6 +302,64 @@
                 margin-top: 0px;
             }
         }
+        :root{
+    --btntt-color: #ffffff;
+    --body-bg: #1a1a2e;
+    --btntt-primary-bg:#00aeef;
+    --btntt-primary-bg-darker:#0491c6;
+}
+.btntt{
+    --btntt-height:90px;
+    position: relative;
+    display: inline-block;
+    border-radius:10px;
+    width: calc(var(--btntt-height)*3);
+    height: var(--btntt-height);
+    font-size: 24px;
+    perspective: calc(var(--btntt-height)*4);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+.btn-cube1{
+    position: absolute;
+    border-radius:10px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease-in-out;
+    transform: translateZ(calc(-1 * var(--btntt-height)/2));
+}
+.btn-cube1 span{
+    position: absolute;
+    border-radius:10px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    color: var(--btntt-color);
+}
+.btntt .btn-cube1 span{
+    background-color: var(--btntt-primary-bg);
+
+}
+.btntt-primary .btn-cube1 span:nth-child(2){
+    background-color: var(--btntt-primary-bg-darker);
+}
+.btn-cube1 span:nth-child(1){
+    transform: rotateX(0deg) translateZ(calc(var(--btntt-height)/2));
+}
+.btn-cube1 span:nth-child(2){
+    transform: rotateX(-90deg) translateZ(calc(var(--btntt-height)/2));
+}
+.btntt:hover .btn-cube1{
+    transform: translateZ(calc(-1 * var(--btntt-height)/2)) rotateX(90deg);
+}
 
     </style>
 </head>
@@ -334,7 +392,7 @@
                         </div>
                       </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ URL::to('/khonline') }}">Khóa học trực tuyến</a>
+                        <a class="nav-link" href="{{ URL::to('/khonl') }}">Khóa học trực tuyến</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ URL::to('') }}">Bài kiểm tra tham khảo</a>

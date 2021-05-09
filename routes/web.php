@@ -90,7 +90,7 @@ Route::get('/change-password-user', [UsermanagerController::class,'change_passwo
 Route::post('/update-password-user', [UsermanagerController::class,'update_password_user']);
 
 //Khoa hoc online
-Route::get('/khonline',[CourseController::class,'khonline']);
+Route::get('/khonl',[CourseController::class,'khonline']);
 Route::get('/ctkhonl',[CourseController::class,'ctkhonl']);
 Route::get('/all-khonl',[CourseController::class,'all_khonl']);
 Route::get('/add-khonl',[CourseController::class,'add_khonl']);
@@ -108,3 +108,7 @@ Route::post('/save-baihoc', [CourseController::class, 'save_baihoc']);
 Route::get('/edit-baihoc/{mabh}', [CourseController::class, 'edit_baihoc']);
 Route::post('/update-baihoc/{mabh}', [CourseController::class, 'update_baihoc']);
 Route::get('/delete-baihoc/{mabh}', [CourseController::class, 'delete_baihoc']);
+
+
+Route::get('/khonl/{madaotao}',[CourseController::class,'khonl']);
+Route::get('/ctkhonl/{makh_onl}',[CourseController::class,'chitietkhonl']);
