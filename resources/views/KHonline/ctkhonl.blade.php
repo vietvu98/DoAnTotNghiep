@@ -31,7 +31,7 @@
                                 <div class="col-md-7">
                                     <div class="single-portfolio--slider">
                                         <div>
-                                            <img style="height: 478px" src="{{ URL::to('/public/upload/khonlimage/' . $values->anhdaidien) }}">
+                                            <img style="height: 478px; box-shadow: 0 8px 6px -6px black;border-radius:25px;" src="{{ URL::to('/public/upload/khonlimage/' . $values->anhdaidien) }}">
                                         </div>
                                         {{-- <div>
                                     <img src="{{asset('public/frontend/khonl/assets/img/services.png')}}" alt="">
@@ -66,10 +66,16 @@
                                             <p> {{ $values->tendaotao }}</p>
                                         </li>
                                     </ul>
-                                    <a href="#"><button class="btntt btntt-primary">
+                                    {{-- <a href={{ URL::to('/payment/') }}><button class="btntt btntt-primary"> --}}
+                                        <a href={{ URL::to('/listbaihoc/') }}><button class="btntt btntt-primary">
                                             <div class="btn-cube1">
-                                                <span>{!! nl2br($values->hocphi) !!}</span>
+                                                <? if ($values->hocphi == 0): ?>
+                                                <span>Miễn phí</span>
+                                                <span>Học ngay</span>
+                                                <? else: ?>
+                                                <span>{{number_format($values->hocphi,0,',','.')}}VND</span>
                                                 <span>Thanh toán</span>
+                                                <? endif; ?>
                                             </div>
                                         </button></a>
                                 </div>

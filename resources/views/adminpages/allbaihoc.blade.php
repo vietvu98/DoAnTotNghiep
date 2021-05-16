@@ -27,6 +27,9 @@
                                         <?php echo $baihoc->lythuyet?>
                                     </td>
                                     <td><a href="{{URL::to('public/upload/videobaihoc/'.$baihoc->video)}}" alt="" style="width: 50%">Xem</a></td>
+                                    {{-- <video controls>
+                                        <source src="{{URL::to('public/upload/videobaihoc/'.$baihoc->video)}}">
+                                    </video> --}}
                                     <td><a href="{{URL::to('/edit-baihoc/'.$baihoc->mabh)}}"><i class="fas fa-pen-square"></i></a>
                                         <a href="{{URL::to('/delete-baihoc/'.$baihoc->mabh)}}" onclick="return confirm('Are you sure to delete?')"><i class="fas fa-eraser"></i></a></td>
                                 </tr>
