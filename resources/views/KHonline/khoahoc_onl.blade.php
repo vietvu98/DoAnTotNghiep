@@ -65,9 +65,8 @@
              </div> --}}
                     @foreach ($all_onl as $key => $edit_values1)
                         <div class="recent-works--items__item print">
-
                             <a href="{{ URL::to('/ctkhonl/' . $edit_values1->makh_onl) }}">
-                                <img style=" width:475.5px; height:300px"
+                                <img style=" width:470px; height:300px; margin: 5px"
                                     src="{{ URL::to('/public/upload/khonlimage/' . $edit_values1->anhdaidien) }}" alt="">
                                 <div class="inner-item">
                                     <div>
@@ -75,7 +74,7 @@
                                         @if ($edit_values1->hocphi == 0)
                                         <p>Miễn phí</p>
                                         @else
-                                        <p>{{ $edit_values1->hocphi }}</p>
+                                        <p>{{number_format($edit_values1->hocphi,0,',','.')}}VND</p>
                                         @endif
                              </div>
                          </div>

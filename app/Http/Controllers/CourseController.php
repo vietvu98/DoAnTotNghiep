@@ -414,21 +414,30 @@ class CourseController extends Controller
 
         $ctkh_onl = DB::table('khonl')->join('daotao', 'daotao.madaotao', '=', 'khonl.madaotao')->where('makh_onl', $makh_onl)->get();
         $all_daotao = DB::table('daotao')->get();
+        $all_baihoc = DB::table('baihoc')->join('khonl', 'khonl.makh_onl', '=', 'baihoc.makh_onl')->where('baihoc.makh_onl',$makh_onl)->first();
         // echo '<pre>';
-        // print_r($ctkh_onl);
+        // print_r($all_baihoc);
         // echo '</pre>';
-        return view('KHonline.ctkhonl', compact('ctkh_onl', 'all_daotao'));
-        // return view('KHonline.payment', compact('ctkh_onl', 'all_daotao'));
+       return view('KHonline.ctkhonl', compact('ctkh_onl', 'all_daotao','all_baihoc'));
     }
 
     public function payment()
     {
         return view('KHonline.payment');
     }
-    public function listbaihoc($mabh)
+    public function listbaihoc($makh_onl)
     {   $all_daotao = DB::table('daotao')->get();
-        $all_khonl = DB::table('khonl')->where('madaotao', $all_daotao)->get();
-        $all_baihoc = DB::table('baihoc')->join('khonl', 'khonl.makh_onl', '=', 'baihoc.makh_onl')->where('mabh', $mabh)->get();
-        return view('KHonline.listbaihoc')->with('all_baihoc', $all_baihoc)->with('all_khonl', $all_khonl)->with('all_daotao', $all_daotao);
+        $all_khonl = DB::table('khonl')->get();
+        $all_baihoc = DB::table('baihoc')->where('makh_onl', $makh_onl)->get();
+        // echo '<pre>';
+        // print_r($all_baihoc);
+        // echo '</pre>';
+       return view('KHonline.listbaihoc',compact('all_baihoc','all_khonl','all_daotao'));
+    }
+    public function ctbaihoc($mabh)
+    {
+        $all_daotao = DB::table('daotao')->get();
+        $ctbh = DB::table('baihoc')->join('khonl', 'khonl.makh_onl', '=', 'baihoc.makh_onl')->where('mabh', $mabh)->get();
+       return view('KHonline.ctbaihoc', compact('ctbh', 'all_daotao'));
     }
 }

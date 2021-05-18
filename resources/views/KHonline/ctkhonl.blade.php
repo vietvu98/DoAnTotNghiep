@@ -67,7 +67,8 @@
                                         </li>
                                     </ul>
                                     {{-- <a href={{ URL::to('/payment/') }}><button class="btntt btntt-primary"> --}}
-                                        <a href={{ URL::to('/listbaihoc/') }}><button class="btntt btntt-primary">
+
+                                        <a href={{ URL::to('/listbaihoc/'.$values->makh_onl) }}><button class="btntt btntt-primary">
                                             <div class="btn-cube1">
                                                 <? if ($values->hocphi == 0): ?>
                                                 <span>Miễn phí</span>
@@ -78,6 +79,8 @@
                                                 <? endif; ?>
                                             </div>
                                         </button></a>
+
+
                                 </div>
                         @endforeach
                     </div>

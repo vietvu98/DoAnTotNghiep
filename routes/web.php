@@ -113,4 +113,5 @@ Route::get('/delete-baihoc/{mabh}', [CourseController::class, 'delete_baihoc']);
 Route::get('/khonl/{madaotao}',[CourseController::class,'khonl']);
 Route::get('/ctkhonl/{makh_onl}',[CourseController::class,'chitietkhonl']);
 Route::get('/payment',[CourseController::class,'payment']);
-Route::get('/listbaihoc',[CourseController::class,'listbaihoc']);
+Route::get('/listbaihoc/{makh_onl}',[CourseController::class,'listbaihoc']);
+Route::get('/ctbaihoc/{mabh}',[CourseController::class,'ctbaihoc']);
