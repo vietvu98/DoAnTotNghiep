@@ -7,6 +7,8 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('public/frontend/assets/css/style.css') }}" />
     <title>SHTP-Đăng nhập</title>
+    <link href="{{ asset('public/backend/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet"
+    type="text/css">
     <link rel="shortcut icon" href="{{ asset('public/frontend/assets/logo.png') }}" type="image/x-icon">
 </head>
 
@@ -149,10 +151,10 @@
                 <div class="content">
                     <h3>Đã có tài khoản ?</h3>
                     <p>
-                        Hãy đăng nhập và tìm những khoá học hay tại trung tâm SHTP-training 
+                        Hãy đăng nhập và tìm những khoá học hay tại trung tâm SHTP-training
                     </p>
                     <button class="btn transparent" id="sign-in-btn">
-                       Đăng nhập 
+                       Đăng nhập
                     </button>
                 </div>
                 <img src="{{ asset('public/frontend/assets/css/register.svg') }}" class="image" alt="" />

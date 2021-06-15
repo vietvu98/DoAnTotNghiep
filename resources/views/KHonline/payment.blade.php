@@ -24,15 +24,10 @@
             <h3>Tạo mới đơn hàng</h3>
             <div class="table-responsive">
                 <form action="/vnpay_php/vnpay_create_payment.php" id="create_form" method="post">
-                    @foreach ($ctkh_onl as $key => $values)
+                    {{-- @foreach ($ctkh_onl as $key => $values) --}}
                     <div class="form-group">
                         <label for="language">Loại hàng hóa </label>
-                        <select name="order_type" id="order_type" class="form-control">
-                            <option value="topup">Nạp tiền điện thoại</option>
-                            <option value="billpayment">Thanh toán hóa đơn</option>
-                            <option value="fashion">Thời trang</option>
-                            <option value="other">Khác - Xem thêm tại VNPAY</option>
-                        </select>
+                        <input name="order_type" id="order_type" class="form-control" value="Thanh toán hóa đơn"/>
                     </div>
                     <div class="form-group">
                         <label for="order_id">Mã hóa đơn</label>
@@ -41,7 +36,8 @@
                     <div class="form-group">
                         <label for="amount">Số tiền</label>
                         <input class="form-control" id="amount"
-                               name="amount" type="number" value="{!! nl2br($values->hocphi) !!}"/>
+                               name="amount" type="number" value=""/>
+                               {{-- value amount{!! nl2br($values->hocphi) !!} --}}
                     </div>
                     <div class="form-group">
                         <label for="order_desc">Nội dung thanh toán</label>
@@ -85,7 +81,7 @@
 
                     <button type="submit" class="btn btn-primary" id="btnPopup">Thanh toán Popup</button>
                     <button type="submit" class="btn btn-default">Thanh toán Redirect</button>
-                    @endforeach
+                    {{-- @endforeach --}}
                 </form>
             </div>
             <p>

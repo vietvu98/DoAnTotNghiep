@@ -35,7 +35,6 @@ Route::post('/admin1', [CourseController::class,'Login']);
 Route::get('/dangxuatadmin', [CourseController::class,'Logout']);
 Route::get('/change-password',[CourseController::class,'change_password']);
 Route::post('/update-password',[CourseController::class,'update_password']);
-
 //Khoa hoc
 Route::get('/all-course', [CourseController::class, 'all_course']);
 Route::get('/add-course', [CourseController::class, 'add_course']);
@@ -109,9 +108,30 @@ Route::get('/edit-baihoc/{mabh}', [CourseController::class, 'edit_baihoc']);
 Route::post('/update-baihoc/{mabh}', [CourseController::class, 'update_baihoc']);
 Route::get('/delete-baihoc/{mabh}', [CourseController::class, 'delete_baihoc']);
 
-
 Route::get('/khonl/{madaotao}',[CourseController::class,'khonl']);
 Route::get('/ctkhonl/{makh_onl}',[CourseController::class,'chitietkhonl']);
 Route::get('/payment',[CourseController::class,'payment']);
 Route::get('/listbaihoc/{makh_onl}',[CourseController::class,'listbaihoc']);
 Route::get('/ctbaihoc/{mabh}',[CourseController::class,'ctbaihoc']);
+Route::post('/ctbaihoc/{mabh}', [CourseController::class, 'postComment']);
+
+// Bài kiểm tra
+Route::get('/view-question/{id_baitest}',[CourseController::class,'view_question']);
+Route::get('/baitest/{id_baitest}',[CourseController::class,'baitest']);
+Route::get('/edit-question/{id_cauhoi}',[CourseController::class, 'edit_question']);
+Route::post('/update-question/{id_cauhoi}',[CourseController::class, 'update_question']);
+//Exam-admin
+Route::get('/all-exam',[CourseController::class,'all_exam']);
+Route::get('/add-exam',[CourseController::class,'add_exam']);
+Route::post('/save-exam', [CourseController::class, 'save_exam']);
+Route::get('/edit-exam/{id_baitest}', [CourseController::class, 'edit_exam']);
+Route::post('/update-exam/{id_baitest}', [CourseController::class, 'update_exam']);
+Route::get('/delete-exam/{id_baitest}', [CourseController::class, 'delete_exam']);
+
+//exam
+Route::post('/export-csv',[CourseController::class, 'export_csv']);
+Route::post('/import-csv',[CourseController::class, 'import_csv']);
+Route::get('/listexam',[CourseController::class,'listexam']);
+
+
+

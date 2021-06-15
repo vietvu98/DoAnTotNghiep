@@ -47,14 +47,14 @@ class UserController extends Controller
             Session::put('message',"Thêm thành công");
             return redirect('/all-user');
         }
-        
+
     }
 
     public function all_user(Request $request)
     {
         $this->AuthLogin();
         $data_user = DB::table('tk_quanly')->get();
-        
+
         return view('adminpages.all_user')->with('all_user',$data_user);
 
     }
@@ -65,5 +65,6 @@ class UserController extends Controller
         Session::put('message',"Xoá thành công");
         return view('adminpages.all_user');
     }
+
 
 }

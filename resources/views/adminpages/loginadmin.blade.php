@@ -69,7 +69,7 @@
 
     <footer>
         <p>
-            Nguyễn Viết Vũ 
+            Nguyễn Viết Vũ
         </p>
     </footer>
 

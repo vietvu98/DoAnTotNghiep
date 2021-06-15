@@ -30,7 +30,7 @@
                                     <td>{{$course->lichkhaigiang}}</td>
                                     <td>{{$course->soluonghv}}</td>
                                     <td>{{$course->thoiluonghoc}}</td>
-                                    <td>{!! nl2br(e($course->muctieukh)) !!}</td>
+                                    <td >{!! nl2br(e($course->muctieukh)) !!}</td>
                                     <td>{!!nl2br(e($course->noidunggiangday))!!}</td>
                                     <td><img src="{{URL::to('public/upload/courseimage/'.$course->anhdaidien)}}" alt="" style="width: 70%"></td>
                                     <td><a href="{{URL::to('/edit-course/'.$course->makh)}}"><i class="fas fa-pen-square"></i></a>

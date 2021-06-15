@@ -23,7 +23,12 @@
                                 @foreach($all_baihoc as $key => $baihoc)
                                 <tr>
                                     <td>{{$baihoc->tenbh}}</td>
-                                    <td style="width: 50%">
+                                    <td style="width: 100%; display: -webkit-box;
+                                    line-height: 25px;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    -webkit-line-clamp: 4;
+                                    -webkit-box-orient: vertical;" >
                                         <?php echo $baihoc->lythuyet?>
                                     </td>
                                     <td><a href="{{URL::to('public/upload/videobaihoc/'.$baihoc->video)}}" alt="" style="width: 50%">Xem</a></td>

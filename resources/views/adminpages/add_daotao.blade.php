@@ -14,7 +14,7 @@
                         <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtTendaotao"
                                 placeholder="Tên đào tạo" class="form-control" required></div>
                     </div>
-                    
+
                     <button type="submit" class="btn btn-primary btn-sm">
                         <i class="fa fa-dot-circle-o"></i> Thêm đào tạo
                     </button>
@@ -23,9 +23,9 @@
                     </button>
                 </form>
             </div>
-           
+
         </div>
-        
+
     </div>
 
 @endsection

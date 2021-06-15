@@ -16,15 +16,15 @@ class SendMailController extends Controller
     public function send_mail(Request $request)
     {
         $to_name = "SHTP Training";
-        $to_email = "kingkun007k@gmail.com" ;
+        $to_email = "vietvuit98@gmail.com" ;
 
         $data = array("name"=>"Mail cảm ơn","body"=>"Leu leu leu");
 
-        FacadesMail::send('adminpages.sendmail',$data, function ($message) use($to_name,$to_email) {
+        FacadesMail::send('userpages.bodymail',$data, function ($message) use($to_name,$to_email) {
             $message->from($to_email, $to_name);
             $message->to($to_email)->subject('Cảm ơn Học viên đã đăng ký khoá học này');
 
         });
-        return redirect('/admin')->with('message','');
+        return redirect()->back()->with('message','');
     }
 }

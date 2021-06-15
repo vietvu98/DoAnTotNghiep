@@ -24,7 +24,12 @@
                                 @foreach($all_khonl as $key => $khonl)
                                 <tr>
                                     <td>{{$khonl->tenkh_onl}}</td>
-                                    <td style="width: 50%">
+                                    <td style="width: 100%; display: -webkit-box;
+                                    line-height: 25px;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    -webkit-line-clamp: 6;
+                                    -webkit-box-orient: vertical;">
                                         <?php echo $khonl->Mota?>
                                     </td>
                                     <td>{{$khonl->hocphi}}</td>

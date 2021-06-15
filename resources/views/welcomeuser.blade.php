@@ -25,11 +25,15 @@
 
     <link rel="stylesheet" href="{{ asset('public/frontend/assets/css/mobster.css') }}">
 
+    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+
 
     <link href="{{ asset ('public/frontend/khonl/css/vendor/font-awesome.css') }}" rel="stylesheet" />
     <link href="{{ asset ('public/frontend/khonl/css/vendor/slick.css') }}" rel="stylesheet" />
     <link href="{{ asset ('public/frontend/khonl/css/vendor/slick-theme.css') }}" rel="stylesheet" />
     <link href="{{ asset ('public/frontend/khonl/css/main.css') }}" rel="stylesheet" />
+    <link href="{{ asset('public/backend/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet"
+    type="text/css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         .galleryContainer {
@@ -395,7 +399,7 @@
                         <a class="nav-link" href="{{ URL::to('/khonl') }}">Khóa học trực tuyến</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ URL::to('') }}">Bài kiểm tra tham khảo</a>
+                        <a class="nav-link" href="{{ URL::to('/listexam') }}">Bài kiểm tra tham khảo</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ URL::to('/gioithieu') }}">Giới thiệu</a>
@@ -406,8 +410,7 @@
                 $tentk_user = Session::get('tentk_user');
                 if ($tentk_user == null) { ?>
                 <div class="ml-auto my-2 my-lg-0">
-                    <a href="{{ URL::to('/dangnhap') }}"> <button class="btn btn-primary rounded-pill ">Sign
-                            In</button></a>
+                    <a href="{{ URL::to('/dangnhap') }}"> <button class="btn btn-primary rounded-pill ">Đăng nhập</button></a>
                 </div>
                 <?php } else { ?>
                 <div class="ml-auto my-2 my-lg-0">
@@ -503,6 +506,8 @@
     <script src="{{ asset('public/frontend/khonl/js/vendor/slick.js') }}"></script>
     <script src="{{ asset('public/frontend/khonl/js/vendor/isotope.pkgd.min.js')}}"></script>
     <script src="{{ asset('public/frontend/khonl/js/main.js') }}"></script>
+
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
 
     <script>
         var slideIndex, slides, dots, captionText;
@@ -608,8 +613,6 @@
         }
 
     </script>
-
-
 </body>
 
 </html>

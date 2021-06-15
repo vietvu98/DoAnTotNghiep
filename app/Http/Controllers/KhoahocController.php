@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use Illuminate\Support\Facades\Mail as FacadesMail;
 
 
 use App\Http\Requests;
@@ -39,6 +39,7 @@ class KhoahocController extends Controller
     }
     public function add_khoahoc($makh)
     {
+
         $matk = Session::get('matk_user');
         if($matk == null){
 
@@ -62,7 +63,16 @@ class KhoahocController extends Controller
                     $data['ngaydk'] = $date_now;
                     DB::table('dangky')->insert($data);
 
+                    $to_name = "SHTP Training";
+                    $to_email = "vietvuit98@gmail.com" ;
 
+                    $data = array("name"=>"SHTP Training","body"=>"Đăng ký khóa học");
+
+                    FacadesMail::send('userpages.bodymail',$data, function ($message) use($to_name,$to_email) {
+                        $message->from($to_email, $to_name);
+                        $message->to($to_email)->subject('Cảm ơn Học viên đã đăng ký khoá học này');
+
+                    });
                     return redirect()->back()->with('thanhcong',"Cảm ơn bạn đã đăng ký khoá học này");
 
                 }
@@ -93,5 +103,5 @@ class KhoahocController extends Controller
         return view('welcomeuser')->with('userpages.khoahoc',$manage_khoahoc);
     }
 
-  
+
 }
