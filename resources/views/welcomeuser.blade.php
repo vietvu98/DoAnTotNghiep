@@ -420,11 +420,8 @@
                                     aria-expanded="false">
                                     <i class="fa fa-user"></i><span class="username">
                                         <?php
-                                        $name = Session::get('tentk_user');
-                                        $matk = Session::get('matk_user');
-                                        if ($name) {
-                                        echo $name;
-                                        }
+                                        echo $tentk_user;
+
                                         ?>
                                     </span>
                                 </a>

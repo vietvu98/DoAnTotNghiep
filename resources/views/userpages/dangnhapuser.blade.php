@@ -47,7 +47,7 @@
                     <input type="submit" value="Đăng nhập" class="btn solid" />
                     <p class="social-text">hoặc đăng nhập với tài khoản khác</p>
                     <div class="social-media">
-                        <a href="#" class="social-icon">
+                        <a href="{{ URL::to('/login-facebook') }}" class="social-icon">
                             <i class="fab fa-facebook-f"></i>
                         </a>
                         <a href="#" class="social-icon">

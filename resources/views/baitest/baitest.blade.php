@@ -30,16 +30,15 @@ main{
     justify-content: center;
     align-items: center;
     background-color: black;
-    background: url('../assets/background_image.jpg');
-    background-color : rgb(204, 226, 255);
+    background: url({{asset('public/backgroundTest.jpg')}});
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 
 .game-quiz-container{
-    width: 40rem;
-    height: 30rem;
+    width: 70rem;
+    height: 35rem;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -127,8 +126,8 @@ background: paleturquoise;
     justify-content: center;
 }
 .next-button-container button{
-    width: 8rem;
-    height: 2rem;
+    width: 10rem;
+    height: 3rem;
     border-radius: 10px;
     background: none;
     color: rgb(25, 25, 25);
@@ -138,7 +137,7 @@ background: paleturquoise;
     outline: none;
 }
 .next-button-container button:hover{
-    background-color: rgb(255, 204, 209);
+    background-color: honeydew;
 }
 
 .modal-container{
@@ -312,7 +311,7 @@ background: paleturquoise;
             </div>
         </div>
         @foreach ($exam as $key => $value1)
-        <h1>{{$value1->tenbaitest}}</h1>
+        <h1 style="color: aliceblue;">{{$value1->tenbaitest}}</h1>
         <div class="game-quiz-container">
 
             <div class="game-details-container">

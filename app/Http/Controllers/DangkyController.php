@@ -9,6 +9,8 @@ use App\Http\Requests;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\taikhoan as ModelsTaikhoan;
+use Illuminate\Support\Str;
 session_start();
 
 class DangkyController extends Controller

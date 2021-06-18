@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use PHPMailer\PHPMailer\PHPMailer;
 use App\Models\Comment;
-
-
+use App\Models\Social;
+use App\Models\taikhoan as ModelsTaikhoan;
+use Laravel\Socialite\Facades\Socialite;
 
 require 'vendor/autoload.php';
 
@@ -628,6 +629,8 @@ class CourseController extends Controller
             return view('baitest.listexam')->with('all_baitest', $all_baitest)->with('all_daotao', $all_daotao);
         }
     }
+
+
 
 
 }

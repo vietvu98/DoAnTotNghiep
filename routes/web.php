@@ -133,5 +133,10 @@ Route::post('/export-csv',[CourseController::class, 'export_csv']);
 Route::post('/import-csv',[CourseController::class, 'import_csv']);
 Route::get('/listexam',[CourseController::class,'listexam']);
 
-
+////Login facebook
+Route::get('/login-facebook',[gioithieucontroller::class,'login_facebook']);
+Route::get('/gt/callback',[gioithieucontroller::class,'callback_facebook']);
+///forgotpassword
+Route::get('/forgotpassword',[gioithieucontroller::class,'forgotpassword']);
+Route::post('/recover_password',[gioithieucontroller::class,'recover_password']);
 
