@@ -7,6 +7,6 @@
     <title>Quên mật khẩu</title>
 </head>
 <body>
-    <p>Click vào {{$data['body']}} để reset password</p>
+    <p>Mật khẩu mới của bạn là: <span style="color: orange;font-size: 24px">{{$data['body']}}</span> </p>
 </body>
 </html>

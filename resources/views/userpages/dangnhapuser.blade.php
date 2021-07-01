@@ -43,7 +43,7 @@
                     <span>
                         <input type="checkbox" class="checkbox"> Ghi nhớ đăng nhập
                     </span>
-                    <a href="{{ URL::to('/quenmk') }}">Quên mật khẩu?</a>
+                    <a href="{{ URL::to('/forgotpassword') }}">Quên mật khẩu?</a>
                     <input type="submit" value="Đăng nhập" class="btn solid" />
                     <p class="social-text">hoặc đăng nhập với tài khoản khác</p>
                     <div class="social-media">

@@ -9,13 +9,13 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use App\Imports\ExcelImports;
 use App\Exports\ExcelExports;
-use App\Models\Question;
-use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use PHPMailer\PHPMailer\PHPMailer;
 use App\Models\Comment;
+use App\Models\Payments;
 use App\Models\Social;
-use App\Models\taikhoan as ModelsTaikhoan;
+use Exception;
+use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
 require 'vendor/autoload.php';
@@ -407,7 +407,7 @@ class CourseController extends Controller
         Session::put('message', "Đã xoá !");
         return redirect('/allbaihoc');
     }
-    // Khoa hoc online
+    // Khoa hoc online học viên
     public function khonl($madaotao)
     {
 
@@ -420,7 +420,6 @@ class CourseController extends Controller
     }
     public function chitietkhonl($makh_onl)
     {
-
         $ctkh_onl = DB::table('khonl')->join('daotao', 'daotao.madaotao', '=', 'khonl.madaotao')->where('makh_onl', $makh_onl)->get();
         $all_daotao = DB::table('daotao')->get();
         $all_baihoc = DB::table('baihoc')->join('khonl', 'khonl.makh_onl', '=', 'baihoc.makh_onl')->where('baihoc.makh_onl', $makh_onl)->first();
@@ -429,10 +428,110 @@ class CourseController extends Controller
         // echo '</pre>';
         return view('KHonline.ctkhonl', compact('ctkh_onl', 'all_daotao', 'all_baihoc'));
     }
-    public function payment()
+    // Thanh toán khóa học
+    public function payment($makh_onl)
     {
-        return view('KHonline.payment');
+        $matk = Session::get('matk_user');
+        Session::put('makh',$makh_onl);
+        if ($matk == null) {
+
+            return redirect('/dangnhap');
+        } else {
+            $ctkh_onl = DB::table('khonl')->join('daotao', 'daotao.madaotao', '=', 'khonl.madaotao')->where('makh_onl', $makh_onl)->get();
+            $tenkhonl = DB::table('khonl')->where('makh_onl', $makh_onl)->first('tenkh_onl');
+            Session::put('tenkh_onl',$tenkhonl);
+            $all_daotao = DB::table('daotao')->get();
+            $all_baihoc = DB::table('baihoc')->join('khonl', 'khonl.makh_onl', '=', 'baihoc.makh_onl')->where('baihoc.makh_onl', $makh_onl)->first();
+            $hocvien = DB::table('hocvien')->where('matk', $matk)->first();
+            return view('KHonline.payment', compact('ctkh_onl',  'all_daotao', 'all_baihoc', 'hocvien'));
+        }
     }
+    public function createPayment(Request $request)
+    {
+        $vnp_TxnRef = Str::random(15); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+        $vnp_OrderInfo = $request->order_desc;
+        $vnp_OrderType = $request->order_type;
+        $vnp_Amount = str_replace(',', '', $request->amount) * 100;
+        $vnp_Locale = $request->language;
+        $vnp_BankCode = $request->bank_code;
+        $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+
+        $inputData = array(
+            "vnp_Version" => "2.0.0",
+            "vnp_TmnCode" => env('VNP_TMN_CODE'),
+            "vnp_Amount" => $vnp_Amount,
+            "vnp_Command" => "pay",
+            "vnp_CreateDate" => date('YmdHis'),
+            "vnp_CurrCode" => "VND",
+            "vnp_IpAddr" => $vnp_IpAddr,
+            "vnp_Locale" => $vnp_Locale,
+            "vnp_OrderInfo" => $vnp_OrderInfo,
+            "vnp_OrderType" => $vnp_OrderType,
+            "vnp_ReturnUrl" => route('vnpay.return'),
+            "vnp_TxnRef" => $vnp_TxnRef,
+        );
+
+        if (isset($vnp_BankCode) && $vnp_BankCode != "") {
+            $inputData['vnp_BankCode'] = $vnp_BankCode;
+        }
+        ksort($inputData);
+        $query = "";
+        $i = 0;
+        $hashdata = "";
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashdata .= '&' . $key . "=" . $value;
+            } else {
+                $hashdata .= $key . "=" . $value;
+                $i = 1;
+            }
+            $query .= urlencode($key) . "=" . urlencode($value) . '&';
+        }
+
+        $vnp_Url = env('VNP_URL') . "?" . $query;
+        if (env('VNP_HASH_SECRET')) {
+            // $vnpSecureHash = md5($vnp_HashSecret . $hashdata);
+            $vnpSecureHash = hash('sha256', env('VNP_HASH_SECRET') . $hashdata);
+            $vnp_Url .= 'vnp_SecureHashType=SHA256&vnp_SecureHash=' . $vnpSecureHash;
+        }
+        return redirect($vnp_Url);
+    }
+    public function vnpayReturn(Request $request)
+    {
+
+        $matk = Session::get('matk_user');
+        $vnpayData = $request->all();
+        $hocvien = DB::table('hocvien')->where('matk', $matk)->first();
+        //dd($vnpayData);
+        if ($request->vnp_ResponseCode == '00') {
+            try {
+                $tenkh = Session::pull('tenkh_onl');
+                $makh = Session::pull('makh');
+                $payments = array();
+                $TransactionID = Str::random(6);
+                $payments['p_transaction_id'] = $TransactionID;
+                $payments['p_transaction_code'] = $vnpayData['vnp_TxnRef'];
+                $payments['p_user_id'] = $matk;
+                $payments['p_hocvien'] = $hocvien->tenhv;
+                $payments['p_makhonl'] =$makh;
+
+                $payments['p_khonl'] =$tenkh->tenkh_onl;
+                $payments['p_money'] = $vnpayData['vnp_Amount']/100;
+                $payments['p_note'] = $vnpayData['vnp_OrderInfo'];
+                $payments['p_vnp_response_code'] = $vnpayData['vnp_ResponseCode'];
+                $payments['p_code_bank'] = $vnpayData['vnp_BankCode'];
+                // dd($payments)
+                DB::table('payments')->insert($payments);
+                $p_tenkhonl = $payments['p_khonl'];
+
+                Session::put('message', "Đã thêm!");
+                return view('KHonline.vnpay_return', compact('vnpayData', 'hocvien','p_tenkhonl'));
+            } catch (Exception $e) {
+                Session::put('erro', "Đã có lỗi xảy ra trong quá tình giao dịch!");
+            }
+        }
+    }
+
     public function listbaihoc($makh_onl)
     {
         $matk = Session::get('matk_user');
@@ -453,17 +552,18 @@ class CourseController extends Controller
     {
         $all_daotao = DB::table('daotao')->get();
         $ctbh = DB::table('baihoc')->join('khonl', 'khonl.makh_onl', '=', 'baihoc.makh_onl')->where('mabh', $mabh)->get();
-        $comment = Comment::where('com_lesson',$mabh)->get();
-        return view('KHonline.ctbaihoc', compact('ctbh', 'all_daotao','comment'));
+        $comment = Comment::where('com_lesson', $mabh)->get();
+        return view('KHonline.ctbaihoc', compact('ctbh', 'all_daotao', 'comment'));
     }
     // Comment
-     public function postComment($mabh,Request $request){
+    public function postComment($mabh, Request $request)
+    {
         $comment = new Comment;
         $id_user  = Session::get('matk_user');
-        $ten_user = DB::table('hocvien')->where('matk',$id_user)->first();
+        $ten_user = DB::table('hocvien')->where('matk', $id_user)->first();
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $comment->com_name = $ten_user->tenhv;
-        $comment->com_content =$request->content;
+        $comment->com_content = $request->content;
         $comment->com_lesson = $mabh;
         $comment->save();
         return back();
@@ -597,22 +697,23 @@ class CourseController extends Controller
         session(['link' => url()->previous()]);
         $question = DB::table('ds_cauhoi')->where('id_cauhoi', $id_cauhoi)->get();
         $exam = DB::table('baitest')->get();
-        return view ('baitest.edit_question')->with('question', $question)->with('exam',$exam);
+        return view('baitest.edit_question')->with('question', $question)->with('exam', $exam);
     }
-    public function update_question($id_cauhoi, Request $request){
+    public function update_question($id_cauhoi, Request $request)
+    {
         $this->AuthLogin();
         $data = array();
         $data['cauhoi'] =  $request->cauhoi;
-        $data['luachona'] =$request->luachona;
-        $data['luachonb'] =$request->luachonb;
-        $data['luachonc'] =$request->luachonc;
-        $data['luachond'] =$request->luachond;
-        $data['dapan'] =$request->dapan;
+        $data['F'] = $request->luachona;
+        $data['luachonb'] = $request->luachonb;
+        $data['luachonc'] = $request->luachonc;
+        $data['luachond'] = $request->luachond;
+        $data['dapan'] = $request->dapan;
         DB::table('ds_cauhoi')->where('id_cauhoi', $id_cauhoi)->update($data);
         Session::put('message', "Đã sửa");
         // return Redirect::to('/dashboard-employer');
-    //    return $data;
-        return Redirect::to( session( 'link' ) );
+        //    return $data;
+        return Redirect::to(session('link'));
     }
     public function listexam()
     {
@@ -629,8 +730,4 @@ class CourseController extends Controller
             return view('baitest.listexam')->with('all_baitest', $all_baitest)->with('all_daotao', $all_daotao);
         }
     }
-
-
-
-
 }

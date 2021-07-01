@@ -169,7 +169,7 @@
                                                                         align="center">
 
                                                                         <img align="center" border="0"
-                                                                            src="{{asset('public/frontend/logo.png')}}" alt="Image"
+                                                                            src="{{asset('public/frontend/assets/logo.png')}}" alt="Image"
                                                                             title="Image"
                                                                             style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 26%;max-width: 150.8px;"
                                                                             width="150.8" />

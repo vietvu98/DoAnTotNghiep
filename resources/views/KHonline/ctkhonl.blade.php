@@ -68,19 +68,21 @@
                                     </ul>
                                     {{-- <a href={{ URL::to('/payment/') }}><button class="btntt btntt-primary"> --}}
 
-                                        <a href={{ URL::to('/listbaihoc/'.$values->makh_onl) }}><button class="btntt btntt-primary">
                                             @if ($values->hocphi == 0)
+                                            <a href={{ URL::to('/listbaihoc/'.$values->makh_onl) }}><button class="btntt btntt-primary">
                                             <div class="btn-cube1">
                                                 <span>Miễn phí</span>
                                                 <span>Học ngay</span>
-                                            </div>
+                                            </div> </button></a>
                                             @else
-                                            <div class="btn-cube1">
-                                                 <span>{{number_format($values->hocphi,0,',','.')}}VND</span>
+                                            <a href={{ URL::to('/payment/'. $values->makh_onl) }}><button class="btntt btntt-primary" name="payment">
+                                                {{-- <a href={{ URL::to('/listbaihoc/'.$values->makh_onl) }}><button class="btntt btntt-primary"> --}}
+                                                <div class="btn-cube1">
+                                                    <span>{{number_format($values->hocphi,0,',','.')}}VND</span>
                                                 <span>Thanh toán</span>
-                                            </div>
+                                                </div> </button></a>
                                             @endif
-                                        </button></a>
+
                                 </div>
                         @endforeach
                     </div>

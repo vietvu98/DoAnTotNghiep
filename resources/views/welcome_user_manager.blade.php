@@ -39,7 +39,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -66,13 +66,13 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-           
+
 
 
         </ul>
@@ -134,7 +134,7 @@
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                        
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -144,22 +144,22 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-black"></i>
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    <?php 
+                                    <?php
                                     $tentk_user = Session::get('tentk_user');
                                     $matk_user = Session::get('matk_user');
                                     echo $tentk_user;
                                  ?></span>
-                                
+
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                
+
                                 <a class="dropdown-item" href="{{URL::to('/change-password-user')}}">
                                     <i class="fas fa-unlock fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Đổi mật khẩu
                                 </a>
-                                
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

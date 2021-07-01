@@ -107,13 +107,16 @@ Route::post('/save-baihoc', [CourseController::class, 'save_baihoc']);
 Route::get('/edit-baihoc/{mabh}', [CourseController::class, 'edit_baihoc']);
 Route::post('/update-baihoc/{mabh}', [CourseController::class, 'update_baihoc']);
 Route::get('/delete-baihoc/{mabh}', [CourseController::class, 'delete_baihoc']);
-
+//Khóa học online học viên
 Route::get('/khonl/{madaotao}',[CourseController::class,'khonl']);
 Route::get('/ctkhonl/{makh_onl}',[CourseController::class,'chitietkhonl']);
-Route::get('/payment',[CourseController::class,'payment']);
 Route::get('/listbaihoc/{makh_onl}',[CourseController::class,'listbaihoc']);
 Route::get('/ctbaihoc/{mabh}',[CourseController::class,'ctbaihoc']);
 Route::post('/ctbaihoc/{mabh}', [CourseController::class, 'postComment']);
+//payment
+Route::get('/payment/{makh_onl}',[CourseController::class,'payment']);
+Route::post('/paymentonl',[CourseController::class,'createPayment']);
+Route::get('/vnpayreturn',[CourseController::class,'vnpayReturn'])->name('vnpay.return');
 
 // Bài kiểm tra
 Route::get('/view-question/{id_baitest}',[CourseController::class,'view_question']);
@@ -139,4 +142,5 @@ Route::get('/gt/callback',[gioithieucontroller::class,'callback_facebook']);
 ///forgotpassword
 Route::get('/forgotpassword',[gioithieucontroller::class,'forgotpassword']);
 Route::post('/recover_password',[gioithieucontroller::class,'recover_password']);
+
 
