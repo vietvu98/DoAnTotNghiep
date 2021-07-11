@@ -48,12 +48,13 @@ Route::get('/all-daotao', [CourseController::class, 'all_daotao']);
 Route::get('/edit-daotao/{madaotao}', [CourseController::class, 'edit_daotao']);
 Route::post('/update-daotao/{madaotao}', [CourseController::class, 'update_daotao']);
 Route::get('/delete-daotao/{madaotao}', [CourseController::class, 'delete_daotao']);
-
+//Thao tác User admin
 Route::get('/them-user', [UserController::class, 'them_user']);
 Route::post('/save-user', [UserController::class, 'save_user']);
 Route::get('/all-user', [UserController::class, 'all_user']);
 Route::get('/delete-user/{matk}', [UserController::class, 'delete_user']);
-
+Route::get('/capquyen', [UserController::class, 'capquyen']);
+Route::post('/luuquyen',[Usercontroller::class,'luuquyen']);
 
 //Đăng nhập Frontend
 Route::get('/',[gioithieucontroller::class,'trangchu']);
@@ -73,6 +74,7 @@ Route::post('/recover-pass',[DangkyController::class,'recover_pass']);
 
 //Hoc vien
 Route::get('/all-hocvien',[HocvienController::class,'all_hocvien']);
+Route::get('/hocvien-onl',[HocvienController::class,'hocvienonl']);
 
 //khoa hoc user
 Route::get('/khoahoc/{madaotao}', [KhoahocController::class,'khoahoc']);
@@ -142,5 +144,8 @@ Route::get('/gt/callback',[gioithieucontroller::class,'callback_facebook']);
 ///forgotpassword
 Route::get('/forgotpassword',[gioithieucontroller::class,'forgotpassword']);
 Route::post('/recover_password',[gioithieucontroller::class,'recover_password']);
+
+//Bài kiểm tra front-end
+Route::post('/check-question/{id_baitest}',[CourseController::class,'check_question']);
 
 

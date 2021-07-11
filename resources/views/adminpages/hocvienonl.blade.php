@@ -7,26 +7,33 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">User</strong>
+                        <strong class="card-title">Thông tin học viên mua khóa học</strong>
                     </div>
                     <div class="card-body">
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>User</th>
-                                    <th>Tuỳ chọn</th>
+                                    <th>Tên học viên</th>
+                                    <th>Khoá học</th>
+                                    <th>Chú thích</th>
+                                    <th>Ngân hàng</th>
+                                    <th>Giá tiền</th>
+                                    <th>Ngày</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($all_user as $key => $value)
+                                @foreach($hvonl as $key => $hv)
                                 <tr>
-                                    <td>{{$value->tentk}}</td>
-                                    <td><a href="{{URL::to('/delete-user/'.$value->matk)}}" onclick="return confirm('Are you sure to delete?')"><i class="fas fa-eraser"></i></a></td>
+                                    <td>{{$hv->p_hocvien}}</td>
+                                    <td>{{$hv->p_khonl}}</td>
+                                    <td>{{$hv->p_note}}</td>
+                                    <td>{{$hv->p_code_bank}}</td>
+                                    <td>{{$hv->p_money}}</td>
+                                    <td>{{$hv->created_at}}
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-
                         <?php
                         $message = Session::get('message');
                         if($message){
@@ -37,6 +44,8 @@
                     </div>
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>

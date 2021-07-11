@@ -40,9 +40,6 @@
                         <input type="password" placeholder="Password" name="matkhau" required
                             oninvalid="this.setCustomValidity('Vui lòng nhập vào mật khẩu!')" />
                     </div>
-                    <span>
-                        <input type="checkbox" class="checkbox"> Ghi nhớ đăng nhập
-                    </span>
                     <a href="{{ URL::to('/forgotpassword') }}">Quên mật khẩu?</a>
                     <input type="submit" value="Đăng nhập" class="btn solid" />
                     <p class="social-text">hoặc đăng nhập với tài khoản khác</p>

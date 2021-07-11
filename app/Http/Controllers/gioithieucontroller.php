@@ -47,8 +47,7 @@ class gioithieucontroller extends Controller
         $matkhau = md5($request->matkhau);
 
         $result = ModelsTaikhoan::where('tentk', $tentk)->where('matkhau', $matkhau)->first();
-        $login_count = $result->count();
-        if ($login_count) {
+        if ($result) {
             Session::put('tentk_user', $result->tentk);
             Session::put('matk_user', $result->matk);
 
@@ -56,7 +55,7 @@ class gioithieucontroller extends Controller
             // return redirect('/gt');
             //session(['link' => url()->previous()]);
 
-            return redirect(Session::get('previous_url'));
+            return redirect('/gt');
 
         } else {
             Session::put('message', 'Mật khẩu tài khoản bị sai. Vui lòng nhập lại!');

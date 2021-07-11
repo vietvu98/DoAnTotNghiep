@@ -44,25 +44,24 @@
                                 </div>
                                 <div class="col-md-5">
                                     <h2>{{ $values->tenkh_onl }}</h2>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                    <p>Mời bạn tham khảo Khóa học</p>
                                     <ul>
                                         <li>
-                                            <span>Mô tả khóa học</span>
-                                            {{-- <p class="card-text">{!! nl2br($values->Mota) !!}</p> --}}
-
-                                            <a class="btn btn-link" href="#" data-toggle="collapse" data-target="#target1">
-                                                Xem thêm
-                                            </a>
-                                            <div id="target1" class="collapse">
-                                                <p class="card-text">{!! nl2br($values->Mota) !!}</p>
-                                            </div>
+                                <div id="accordion">
+                                <a href="" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Mô tả khóa học
+                                </a>
+                                <div class="card">
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body">
+                                {!! nl2br($values->Mota) !!}
+                                </div>
+                                </div>
+                                </div>
+                                </div>
                                         </li>
-                                        {{-- <li>
-                                    <span>Client</span>
-                                    Rubik Technologies
-                                </li> --}}
-                                        <li>
-                                            <span>Chuyên ngànnh</span>
+                                        <li style="margin-top: 80px;">
+                                            <span>Chuyên ngành</span>
                                             <p> {{ $values->tendaotao }}</p>
                                         </li>
                                     </ul>
@@ -70,10 +69,20 @@
 
                                             @if ($values->hocphi == 0)
                                             <a href={{ URL::to('/listbaihoc/'.$values->makh_onl) }}><button class="btntt btntt-primary">
-                                            <div class="btn-cube1">
+                                            <div class="btn-cube1" style="margin-top: 20px;">
                                                 <span>Miễn phí</span>
                                                 <span>Học ngay</span>
                                             </div> </button></a>
+                                            @else
+                                            <?php
+                                            $xacnhantt = Session::get('xacnhantt');
+                                            ?>
+                                            @if ($xacnhantt)
+                                            <a href={{ URL::to('/listbaihoc/'.$values->makh_onl) }}><button class="btntt btntt-primary">
+                                                <div class="btn-cube1">
+                                                    <span>Đã thanh toán</span>
+                                                    <span>Học ngay</span>
+                                                </div> </button></a>
                                             @else
                                             <a href={{ URL::to('/payment/'. $values->makh_onl) }}><button class="btntt btntt-primary" name="payment">
                                                 {{-- <a href={{ URL::to('/listbaihoc/'.$values->makh_onl) }}><button class="btntt btntt-primary"> --}}
@@ -81,6 +90,7 @@
                                                     <span>{{number_format($values->hocphi,0,',','.')}}VND</span>
                                                 <span>Thanh toán</span>
                                                 </div> </button></a>
+                                            @endif
                                             @endif
 
                                 </div>

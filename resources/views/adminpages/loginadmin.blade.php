@@ -30,12 +30,6 @@
             <form action="{{ URL::to('/admin1') }}" method="POST">
                 {{ csrf_field() }}
                 <h1>Đăng nhập</h1>
-                <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <span>Hoặc sử dụng tài khoản của bạn</span>
                 <input type="text" placeholder="Tên tài khoản" name="txtTenTK" />
                 <input type="password" placeholder="Mật khẩu" name="txtMK" />
 
@@ -61,7 +55,7 @@
                 <div class="overlay-panel overlay-right">
                     <h1>Chào bạn!</h1>
                     <p>Nhập thông tin cá nhân của bạn và bắt đầu hành trình với chúng tôi</p>
-                    <button class="ghost" id="forgotpassword">Quên mật khẩu ?</button>
+
                 </div>
             </div>
         </div>

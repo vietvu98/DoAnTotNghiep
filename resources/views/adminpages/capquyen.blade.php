@@ -253,19 +253,55 @@
                     Session::put('message', null);
                     }
                     ?>
-                    @yield('admin_content')
-
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>Cấp quyền cho tài khoản</strong>
+                            </div>
+                            <div class="card-body card-block">
+                                <h4>Tài khoản</h4>
+                                <form action="{{ URL::to('/luuquyen') }}" method="post" class="form-horizontal">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="hid" id="hid">
+                                    <div class="row form-group">
+                                        <div class="col-3 col-md-3">
+                                            <select id="select" name="sltk" class="form-control">
+                                                @foreach ($taikhoan as $key => $value)
+                                                    @if ($value->matk != 1)
+                                                        <option value="{{ $value->matk }}">{{ $value->tentk }}
+                                                        </option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <h4>Danh sách quyền</h4>
+                                    @foreach ($quyen as $key => $values)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="{{ $values->id }}"
+                                                id="{{ $values->id }}" name="ck[]">
+                                            <label class="form-check-label" for="myCheck" style="font-size: 18px">
+                                                {{ $values->ten_quyen }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-dot-circle-o"></i>Cấp quyền
+                                    </button>
+                                </form>
+                                {{-- <button type="button" onclick="myFunction()">Try it</button>
+                            <p id="demo"></p> --}}
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
-
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-
                     </div>
                 </div>
             </footer>
@@ -334,8 +370,6 @@
         CKEDITOR.replace('ckeditor3');
         CKEDITOR.replace('ckeditor4');
         CKEDITOR.replace('ckeditor5');
-        CKEDITOR.replace('ckeditor6');
-        CKEDITOR.replace('ckeditor7');
     </script>
     <script>
         var array = [
@@ -343,27 +377,84 @@
                 {{ $values->idquyen }},
             @endforeach
         ];
-            if (!array.includes(1)) {
-                document.getElementById('q1').style.display = "none";
+        if (!array.includes(1)) {
+            document.getElementById('q1').style.display = "none";
+        }
+        if (!array.includes(2)) {
+            document.getElementById('q2').style.display = "none";
+        }
+        if (!array.includes(3)) {
+            document.getElementById('q3').style.display = "none";
+        }
+        if (!array.includes(4)) {
+            document.getElementById('q4').style.display = "none";
+        }
+        if (!array.includes(5)) {
+            document.getElementById('q5').style.display = "none";
+        }
+        if (!array.includes(6)) {
+            document.getElementById('q6').style.display = "none";
+        }
+        if (!array.includes(7)) {
+            document.getElementById('q7').style.display = "none";
+        }
+    </script>
+    <script>
+        // xuất hiện lần đầu
+        var select = document.getElementById("select");
+        tk = select.value;
+        document.getElementById("hid").value = tk
+        var array = [
+            @foreach ($chitiet_quyen as $key => $values)
+                {{ $values->matk }},{{ $values->idquyen }},
+            @endforeach
+        ];
+        var arrayPer = [];
+        for (var i = 0; i < array.length / 2; i++) {
+            if (array[i * 2] == tk) {
+                arrayPer.push(array[i * 2 + 1]);
             }
-            if (!array.includes(2)) {
-                document.getElementById('q2').style.display = "none";
+        }
+        // bắt sự kiện thay đổi
+        select.addEventListener("change", function() {
+            var select = document.getElementById("select");
+            var tk = select.value;
+            document.getElementById("hid").value = tk
+            var array = [
+                @foreach ($chitiet_quyen as $key => $values)
+                    {{ $values->matk }},{{ $values->idquyen }},
+                @endforeach
+            ];
+            var arrayPer = [];
+            for (var i = 0; i < array.length / 2; i++) {
+                if (array[i * 2] == tk) {
+                    arrayPer.push(array[i * 2 + 1]);
+                }
             }
-            if (!array.includes(3)) {
-                document.getElementById('q3').style.display = "none";
+            var checkbox = document.getElementsByName('ck[]');
+            for (var i = 0; i < checkbox.length; i++) {
+                checkbox[i].checked = false;
             }
-            if (!array.includes(4)) {
-                document.getElementById('q4').style.display = "none";
+            for (var i = 0; i <= arrayPer.length; i++) {
+                for (var j = 0; j < checkbox.length; j++) {
+                    if (checkbox[j].value == arrayPer[i]) {
+                        document.getElementById(arrayPer[i]).checked = true;
+                    }
+                }
             }
-            if (!array.includes(5)) {
-                document.getElementById('q5').style.display = "none";
+        });
+
+        var checkbox = document.getElementsByName('ck[]');
+        for (var i = 0; i < checkbox.length; i++) {
+            checkbox[i].checked = false;
+        }
+        for (var i = 0; i <= arrayPer.length; i++) {
+            for (var j = 0; j < checkbox.length; j++) {
+                if (checkbox[j].value == arrayPer[i]) {
+                    document.getElementById(arrayPer[i]).checked = true;
+                }
             }
-            if (!array.includes(6)) {
-                document.getElementById('q6').style.display = "none";
-            }
-            if (!array.includes(7)) {
-                document.getElementById('q7').style.display = "none";
-            }
+        }
     </script>
 </body>
 

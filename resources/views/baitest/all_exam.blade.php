@@ -15,7 +15,6 @@
                                 <tr>
                                     <th>Tên bài kiểm tra</th>
                                     <th>Số lượng câu hỏi</th>
-                                    <th>Thời gian làm bài</th>
                                     <th>Điểm số</th>
                                     <th>Tuỳ chọn</th>
                                 </tr>
@@ -25,9 +24,9 @@
                                 <tr>
                                     <td>{{$values->tenbaitest}}</td>
                                     <td>{{$values->slcauhoi}}</td>
-                                    <td>{{$values->thoigian}}</td>
                                     <td>{{$values->diemso}}</td>
-                                    <td>                                        <a href="{{URL::to('/view-question/'.$values->id_baitest)}}">  <i class="fas fa-eye"></i></a>
+                                    <td>
+                                        <a href="{{URL::to('/view-question/'.$values->id_baitest)}}">  <i class="fas fa-eye"></i></a>
                                         <a href="{{URL::to('/edit-exam/'.$values->id_baitest)}}"><i class="fas fa-pen-square"></i></a>
                                         <a href="{{URL::to('/delete-exam/'.$values->id_baitest)}}" onclick="return confirm('Are you sure to delete?')"><i class="fas fa-eraser"></i></a>
                                     </td>

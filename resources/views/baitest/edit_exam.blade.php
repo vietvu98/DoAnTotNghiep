@@ -21,11 +21,6 @@
                                 placeholder="Tên bài kiểm tra" class="form-control" required></div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Thời gian làm bài</label></div>
-                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtThoigian" value="{{$values->thoigian}}"
-                                placeholder="Thời gian làm bài" class="form-control" required></div>
-                    </div>
-                    <div class="row form-group">
                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Điểm số</label></div>
                         <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtDiemso" value="{{$values->diemso}}"
                                 placeholder="Điểm số" class="form-control" required></div>

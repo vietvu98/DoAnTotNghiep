@@ -55,7 +55,7 @@
                 <div class="form-group">
                     <label >Kết quả: Giao dịch thành công</label>
                     <br>
-                    <a href="{{ URL::to('/gt') }}">
+                    <a href="{{ URL::to('/khonl') }}">
                         <button>Quay lại</button>
                     </a>
                 </div>

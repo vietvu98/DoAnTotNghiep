@@ -96,11 +96,10 @@ class KhoahocController extends Controller
     public function timkiem(Request $request)
     {
         $txtTimkiem = $request->txtTimkiem;
+        $all_daotao = DB::table('daotao')->get();
         $date_now = Carbon::now()->toDateString();
         $all_khoahoc = DB::table('khoahoc')->where('tenkh','like','%'.$txtTimkiem.'%')->where('lichkhaigiang','>=',$date_now)->orderBy('lichkhaigiang','DESC')->get();
-
-        $manage_khoahoc = view('userpages.khoahoc')->with('all_kh',$all_khoahoc);
-        return view('welcomeuser')->with('userpages.khoahoc',$manage_khoahoc);
+        return view('userpages.khoahoc')->with('all_kh',$all_khoahoc)->with('all_daotao',$all_daotao);
     }
 
 

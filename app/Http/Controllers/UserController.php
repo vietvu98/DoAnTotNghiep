@@ -28,7 +28,10 @@ class UserController extends Controller
     public function them_user()
     {
         $this->AuthLogin();
-        return view('adminpages.add_user');
+        $quyen = DB::table('quyen')->get();
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        return view('adminpages.add_user')->with('quyen',$quyen)->with('ct_quyen',$ct_quyen);
     }
     public function save_user(Request $request)
     {
@@ -54,8 +57,9 @@ class UserController extends Controller
     {
         $this->AuthLogin();
         $data_user = DB::table('tk_quanly')->get();
-
-        return view('adminpages.all_user')->with('all_user',$data_user);
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        return view('adminpages.all_user')->with('all_user',$data_user)->with('ct_quyen',$ct_quyen);
 
     }
     public function delete_user($matk)
@@ -63,8 +67,39 @@ class UserController extends Controller
         $this->AuthLogin();
         DB::table('tk_quanly')->where('matk',$matk)->delete();
         Session::put('message',"Xoá thành công");
-        return view('adminpages.all_user');
+        return redirect('/all-user');
     }
 
+    public function capquyen(){
+        $this->AuthLogin();
+        $matk = Session::get('admin_id');
+        $quyen = DB::table('quyen')->get();
+        $taikhoan =DB::table('tk_quanly')->get();
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        $chitiet_quyen = DB::table('chitiet_quyen')->get();
+        return view('adminpages.capquyen')->with('quyen',$quyen)->with('ct_quyen',$ct_quyen)
+        ->with('taikhoan',$taikhoan)->with('chitiet_quyen',$chitiet_quyen);
+    }
+    public function luuquyen(Request $request)
+    {
+        $this->AuthLogin();
+        $hid = $request->hid;
+        $temp = 0;
+            if($temp == 0){
+                DB::table('chitiet_quyen')->where('matk',$hid)->delete();
+                $temp = 1;
+            }
+            if($temp = 1){
+                foreach($request->input('ck') as $key => $values){
+                    $datainsert = array();
+                    $datainsert['matk'] = $request->hid;
+                    $datainsert['idquyen'] = $values;
+                    DB::table('chitiet_quyen')->insert($datainsert);
+                }
+                // DB::table('chitiet_quyen')->insert($data);
+                Session::put('message',"Thêm thành công");
+                return redirect('/capquyen');
+            }
+        }
 
 }

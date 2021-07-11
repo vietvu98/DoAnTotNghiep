@@ -71,10 +71,21 @@
                                 <div class="inner-item">
                                     <div>
                                         <h4>{{ $edit_values1->tenkh_onl }}</h4>
+
                                         @if ($edit_values1->hocphi == 0)
-                                        <p>Miễn phí</p>
+                                        <p style="font-size: 24px; color: azure;">Miễn phí</p>
                                         @else
-                                        <p>{{number_format($edit_values1->hocphi,0,',','.')}}VND</p>
+                                        @foreach ($payments as $key => $pay)
+                                        @php
+                                            $check = $pay->makh_onl;
+                                        @endphp
+                                        @if ($check == $edit_values1->makh_onl)
+                                        <p style="font-size: 24px; color: azure">Đã thanh toán</p>
+                                        @else
+                                        <p style="font-size: 24px; color: azure">{{number_format($edit_values1->hocphi,0,',','.')}}VND</p>
+                                        @endif
+                                        @endforeach
+
                                         @endif
                              </div>
                          </div>
@@ -82,140 +93,6 @@
 
                  </div>
                  @endforeach
-                 {{-- <div class="recent-works--items__item art">
-                 <a href="{{ URL::to('/ctkhonl') }}">
-                     <img src="{{asset('public/frontend/khonl/assets/img/3.jpg')}}" alt="">
-                     <div class="inner-item">
-                         <div>
-                             <h4>T-Shirt Design</h4>
-                             <p>art / t-shirt</p>
-                         </div>
-                     </div>
-                 </a>
-             </div>
-             <div class="recent-works--items__item web">
-                 <a href="{{ URL::to('/ctkhonl') }}">
-                     <img src="{{asset('public/frontend/khonl/assets/img/4.jpg')}}" alt="">
-                     <div class="inner-item">
-                         <div>
-                             <h4>T-Shirt Design</h4>
-                             <p>art / t-shirt</p>
-                         </div>
-                     </div>
-                 </a>
-             </div>
-             <div class="recent-works--items__item print">
-                 <a href="{{ URL::to('/ctkhonl') }}">
-                     <img src="{{asset('public/frontend/khonl/assets/img/4.jpg')}}" alt="">
-                     <div class="inner-item">
-                         <div>
-                             <h4>T-Shirt Design</h4>
-                             <p>art / t-shirt</p>
-                         </div>
-                     </div>
-                 </a>
-             </div>
-             <div class="recent-works--items__item web">
-                 <a href="{{ URL::to('/ctkhonl') }}">
-                     <img src="{{asset('public/frontend/khonl/assets/img/3.jpg')}}" alt="">
-                     <div class="inner-item">
-                         <div>
-                             <h4>T-Shirt Design</h4>
-                             <p>art / t-shirt</p>
-                         </div>
-                     </div>
-                 </a>
-             </div>
-             <div class="recent-works--items__item web">
-                 <a href="{{ URL::to('/ctkhonl') }}">
-                     <img src="{{asset('public/frontend/khonl/assets/img/4.jpg')}}" alt="">
-                     <div class="inner-item">
-                         <div>
-                             <h4>T-Shirt Design</h4>
-                             <p>art / t-shirt</p>
-                         </div>
-                     </div>
-                 </a>
-             </div>
-             <div class="recent-works--items__item art">
-                 <a href="{{ URL::to('/ctkhonl') }}">
-                     <img src="{{asset('public/frontend/khonl/assets/img/3.jpg')}}" alt="">
-                     <div class="inner-item">
-                         <div>
-                             <h4>T-Shirt Design</h4>
-                             <p>art / t-shirt</p>
-                         </div>
-                     </div>
-                 </a>
-             </div> --}}
-             </div>
-         </section>
-
-         <section class="partners">
-             <div class="container">
-                 <h2>Great Integrations with Others</h2>
-                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                 <span class="dot-dash dark">.</span>
-                 <div class="partners--container">
-                     <div class="partners--item">
-                         <div class="partners--item__image">
-                             <img src="assets/img/partner1.png" alt="">
-                         </div>
-                     </div>
-                     <div class="partners--item">
-                         <div class="partners--item__image">
-                             <img src="assets/img/partner1.png" alt="">
-                         </div>
-                     </div>
-                     <div class="partners--item">
-                         <div class="partners--item__image">
-                             <img src="assets/img/partner1.png" alt="">
-                         </div>
-                     </div>
-                     <div class="partners--item">
-                         <div class="partners--item__image">
-                             <img src="assets/img/partner1.png" alt="">
-                         </div>
-                     </div>
-                     <div class="partners--item">
-                         <div class="partners--item__image">
-                             <img src="assets/img/partner1.png" alt="">
-                         </div>
-                     </div>
-                     <div class="partners--item">
-                         <div class="partners--item__image">
-                             <img src="assets/img/partner1.png" alt="">
-                         </div>
-                     </div>
-                     <div class="partners--item">
-                         <div class="partners--item__image">
-                             <img src="assets/img/partner1.png" alt="">
-                         </div>
-                     </div>
-                     <div class="partners--item">
-                         <div class="partners--item__image">
-                             <img src="assets/img/partner1.png" alt="">
-                         </div>
-                     </div>
-                     <div class="partners--item">
-                         <div class="partners--item__image">
-                             <img src="assets/img/partner1.png" alt="">
-                         </div>
-                     </div>
-                     <div class="partners--item">
-                         <div class="partners--item__image">
-                             <img src="assets/img/partner1.png" alt="">
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </section>
-
-         <section class="get-started">
-             <div class="container">
-                 <h2>Let's Get Started Now. It's FREE!</h2>
-                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                 <a href="contact.html" class="button">Start Free Trial</a>
              </div>
          </section>
      </div>

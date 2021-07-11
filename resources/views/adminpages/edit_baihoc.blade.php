@@ -44,9 +44,6 @@
                     <button type="submit" class="btn btn-primary btn-sm" >
                         <i class="fa fa-dot-circle-o"></i> Sửa bài học trực tuyến
                     </button>
-                    <button type="reset" class="btn btn-danger btn-sm">
-                        <i class="fa fa-ban"></i> Huỷ
-                    </button>
                 </form>
                 @endforeach
 

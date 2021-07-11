@@ -43,9 +43,6 @@
                     <button type="submit" class="btn btn-primary btn-sm" >
                         <i class="fa fa-dot-circle-o"></i> Thêm khoá học trực tuyến
                     </button>
-                    <button type="reset" class="btn btn-danger btn-sm">
-                        <i class="fa fa-ban"></i> Huỷ
-                    </button>
                 </form>
             </div>
 

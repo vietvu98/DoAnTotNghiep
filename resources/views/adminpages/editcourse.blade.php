@@ -42,12 +42,12 @@
 
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Mục tiêu khoá học</label></div>
-                        <div class="col-12 col-md-9"><textarea name="txtMuctieu" id="textarea-input" rows="9"
+                        <div class="col-12 col-md-9"><textarea name="txtMuctieu" id="ckeditor6"
                                 placeholder="Mục tiêu khoá học" class="form-control" required>{{$edit_values->muctieukh}}</textarea></div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Nội dung giảng dạy</label></div>
-                        <div class="col-12 col-md-9"><textarea name="txtNoidung" id="textarea-input" rows="9"
+                        <div class="col-12 col-md-9"><textarea name="txtNoidung" id="ckeditor7"
                                 placeholder="Nội dung giảng dạy" class="form-control" required>{{$edit_values->noidunggiangday}}</textarea></div>
                     </div>
                     <div class="row form-group">
@@ -75,9 +75,6 @@
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm">
                         <i class="fa fa-dot-circle-o"></i> Sửa khoá học
-                    </button>
-                    <button type="reset" class="btn btn-danger btn-sm">
-                        <i class="fa fa-ban"></i> Huỷ
                     </button>
                 </form>
                 @endforeach

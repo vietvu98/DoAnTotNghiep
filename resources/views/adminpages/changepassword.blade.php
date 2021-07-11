@@ -25,12 +25,9 @@
                     <div class="col-12 col-md-9"><input type="text" id="xacnhan" name="txtXacnhanmk"
                             placeholder="Xác nhận lại mật khẩu" class="form-control"></div>
                 </div>
-                
+
                 <button type="submit" class="btn btn-primary btn-sm">
                     <i class="fa fa-dot-circle-o"></i> Đổi mật khẩu
-                </button>
-                <button type="reset" class="btn btn-danger btn-sm">
-                    <i class="fa fa-ban"></i> Huỷ
                 </button>
 
             </form>

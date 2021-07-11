@@ -36,7 +36,14 @@ class CourseController extends Controller
     public function index_admin()
     {
         $this->AuthLogin();
-        return view('adminpages.adminpage');
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        $hvoff = DB::table('dangky')->get()->count();
+        $hvonl = DB::table('payments')->get()->count();
+        $totalmonmey = DB::table('payments')->get()->sum('p_money');
+        $khoff = DB::table('khoahoc')->get()->count();
+        $khonl = DB::table('khonl')->get()->count();
+        return view('adminpages.adminpage',compact('ct_quyen', 'hvoff','hvonl','totalmonmey','khoff','khonl'));
     }
 
 
@@ -62,7 +69,9 @@ class CourseController extends Controller
     public function change_password()
     {
         $this->AuthLogin();
-        return view('adminpages.changepassword');
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        return view('adminpages.changepassword')->with('ct_quyen',$ct_quyen);
     }
     public function update_password(Request $request)
     {
@@ -93,9 +102,11 @@ class CourseController extends Controller
     public function add_course()
     {
         $this->AuthLogin();
-        $data_daotao = DB::table('daotao')->get();
-        $manage_daotao = view('adminpages.addcourse')->with('all_daotao', $data_daotao);
-        return view('welcome')->with('adminpages.addcourse', $manage_daotao);
+        $all_daotao = DB::table('daotao')->get();
+        //$manage_daotao = view('adminpages.addcourse')->with('all_daotao', $data_daotao);
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        return view('adminpages.addcourse')->with('all_daotao',$all_daotao)->with('ct_quyen',$ct_quyen);
     }
     public function save_course(Request $request)
     {
@@ -136,14 +147,18 @@ class CourseController extends Controller
         $this->AuthLogin();
         $edit_course = DB::table('khoahoc')->where('makh', $makh)->get();
         $data_daotao = DB::table('daotao')->get();
-        return view('adminpages.editcourse')->with('edit_course', $edit_course)->with('all_daotao', $data_daotao);
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        return view('adminpages.editcourse')->with('edit_course', $edit_course)->with('all_daotao', $data_daotao)->with('ct_quyen',$ct_quyen);
     }
     public function all_course()
     {
         $this->AuthLogin();
         $all_course = DB::table('khoahoc')->get();
-        $manager_course = view('adminpages.allcourse')->with('all_course', $all_course);
-        return view('welcome')->with('adminpages.allcourse', $manager_course);
+        //$manager_course = view('adminpages.allcourse')->with('all_course', $all_course);
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        return view('adminpages.allcourse')->with('all_course',$all_course)->with('ct_quyen',$ct_quyen);
     }
     public function update_course(Request $request, $makh)
     {
@@ -184,8 +199,11 @@ class CourseController extends Controller
     public function them_daotao()
     {
         $this->AuthLogin();
-        return view('adminpages.add_daotao');
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        return view('adminpages.add_daotao')->with('ct_quyen',$ct_quyen);
     }
+    /////////////////////////////////////////////////////////////////////////////////
     public function save_daotao(Request $request)
     {
         $this->AuthLogin();
@@ -198,16 +216,21 @@ class CourseController extends Controller
     public function all_daotao()
     {
         $this->AuthLogin();
-        $data = DB::table('daotao')->get();
-        $manage_daotao = view('adminpages.all_daotao')->with('all_daotao', $data);
-        return view('welcome')->with('adminpages.all_daotao', $manage_daotao);
+        $all_daotao = DB::table('daotao')->get();
+        //$manage_daotao = view('adminpages.all_daotao')->with('all_daotao', $data);
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        //return view('welcome')->with('adminpages.all_daotao', $manage_daotao)->with('ct_quyen',$ct_quyen);
+        return view('adminpages.all_daotao')->with('all_daotao',$all_daotao)->with('ct_quyen',$ct_quyen);
     }
     public function edit_daotao($madaotao)
     {
         $this->AuthLogin();
-        $data = DB::table('daotao')->where('madaotao', $madaotao)->get();
-        $manage_daotao = view('adminpages.edit_daotao')->with('all_daotao', $data);
-        return view('welcome')->with('adminpages.edit_daotao', $manage_daotao);
+        $all_daotao = DB::table('daotao')->where('madaotao', $madaotao)->get();
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        //$manage_daotao = view('adminpages.edit_daotao')->with('all_daotao', $data);
+        return view('adminpages.edit_daotao')->with('all_daotao', $all_daotao)->with('ct_quyen',$ct_quyen);
     }
 
     public function update_daotao(Request $request, $madaotao)
@@ -230,9 +253,12 @@ class CourseController extends Controller
     //Khóa học trực tuyến
     public function khonline()
     {
+        $matk = Session::get('matk_user');
         $data = DB::table('daotao')->get();
         $all_khonl = DB::table('khonl')->get();
-        return view('KHonline.khoahoc_onl')->with('all_onl', $all_khonl)->with('all_daotao', $data);
+        $payments = DB::table('payments')->join('khonl','khonl.makh_onl','=','payments.makh_onl')->where('p_user_id',$matk)->get();
+
+        return view('KHonline.khoahoc_onl')->with('all_onl', $all_khonl)->with('all_daotao', $data)->with('payments',$payments);
     }
     public function ctkhonl()
     {
@@ -243,9 +269,11 @@ class CourseController extends Controller
     public function add_khonl()
     {
         $this->AuthLogin();
-        $data_daotao = DB::table('daotao')->get();
-        $manage_daotao = view('adminpages.add_khonl')->with('all_daotao', $data_daotao);
-        return view('welcome')->with('adminpages.add_khonl', $manage_daotao);
+        $all_daotao = DB::table('daotao')->get();
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        //$manage_daotao = view('adminpages.add_khonl')->with('all_daotao', $data_daotao);
+        return view('adminpages.add_khonl')->with('all_daotao',$all_daotao)->with('ct_quyen',$ct_quyen);
     }
     public function save_khonl(Request $request)
     {
@@ -278,15 +306,19 @@ class CourseController extends Controller
     {
         $this->AuthLogin();
         $all_khonl = DB::table('khonl')->get();
-        $manager_khonl = view('adminpages.all_khonl')->with('all_khonl', $all_khonl);
-        return view('welcome')->with('adminpages.all_khonl', $manager_khonl);
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        //$manager_khonl = view('adminpages.all_khonl')->with('all_khonl', $all_khonl);
+        return view('adminpages.all_khonl')->with('all_khonl',$all_khonl)->with('ct_quyen',$ct_quyen);
     }
     public function edit_khonl($makh_onl)
     {
         $this->AuthLogin();
         $edit_khonl = DB::table('khonl')->where('makh_onl', $makh_onl)->get();
         $data_daotao = DB::table('daotao')->get();
-        return view('adminpages.editkhonl')->with('edit_khonl', $edit_khonl)->with('all_daotao', $data_daotao);
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        return view('adminpages.editkhonl')->with('edit_khonl', $edit_khonl)->with('all_daotao', $data_daotao)->with('ct_quyen', $ct_quyen);
     }
     public function update_khonl(Request $request, $makh_onl)
     {
@@ -325,9 +357,11 @@ class CourseController extends Controller
     public function add_baihoc()
     {
         $this->AuthLogin();
-        $data_khonl = DB::table('khonl')->get();
-        $manage_khonl = view('adminpages.addbaihoc')->with('all_khonl', $data_khonl);
-        return view('welcome')->with('adminpages.addbaihoc', $manage_khonl);
+        $all_khonl = DB::table('khonl')->get();
+        //$manage_khonl = view('adminpages.addbaihoc')->with('all_khonl', $data_khonl);
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        return view('adminpages.addbaihoc')->with('all_khonl',$all_khonl)->with('ct_quyen',$ct_quyen);
     }
     public function huyBH()
     {
@@ -365,15 +399,19 @@ class CourseController extends Controller
     {
         $this->AuthLogin();
         $all_baihoc = DB::table('baihoc')->get();
-        $manager_baihoc = view('adminpages.allbaihoc')->with('all_baihoc', $all_baihoc);
-        return view('welcome')->with('adminpages.allbaihoc', $manager_baihoc);
+        //$manager_baihoc = view('adminpages.allbaihoc')->with('all_baihoc', $all_baihoc);
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        return view('adminpages.allbaihoc')->with('all_baihoc',$all_baihoc)->with('ct_quyen',$ct_quyen);
     }
     public function edit_baihoc($mabh)
     {
         $this->AuthLogin();
         $edit_baihoc = DB::table('baihoc')->where('mabh', $mabh)->get();
         $data_khonl = DB::table('khonl')->get();
-        return view('adminpages.edit_baihoc')->with('edit_baihoc', $edit_baihoc)->with('all_khonl', $data_khonl);
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        return view('adminpages.edit_baihoc')->with('edit_baihoc', $edit_baihoc)->with('all_khonl', $data_khonl)->with('ct_quyen',$ct_quyen);
     }
     public function update_baihoc(Request $request, $mabh)
     {
@@ -410,23 +448,31 @@ class CourseController extends Controller
     // Khoa hoc online học viên
     public function khonl($madaotao)
     {
-
+        $matk = Session::get('matk_user');
         $all_khonl = DB::table('khonl')->where('madaotao', $madaotao)->get();
         $data_daotao = DB::table('daotao')->get();
+        $payments = DB::table('payments')->join('khonl','khonl.makh_onl','=','payments.makh_onl')->where('p_user_id',$matk)->get();
         // echo '<pre>';
         // print_r($all_khonl);
         // echo '</pre>';
-        return view('KHonline.khoahoc_onl')->with('all_onl', $all_khonl)->with('all_daotao', $data_daotao);
+        return view('KHonline.khoahoc_onl')->with('all_onl', $all_khonl)->with('all_daotao', $data_daotao)->with('payments',$payments);
     }
     public function chitietkhonl($makh_onl)
-    {
+    {   $matk = Session::get('matk_user');
         $ctkh_onl = DB::table('khonl')->join('daotao', 'daotao.madaotao', '=', 'khonl.madaotao')->where('makh_onl', $makh_onl)->get();
         $all_daotao = DB::table('daotao')->get();
         $all_baihoc = DB::table('baihoc')->join('khonl', 'khonl.makh_onl', '=', 'baihoc.makh_onl')->where('baihoc.makh_onl', $makh_onl)->first();
-        // echo '<pre>';
-        // print_r($all_baihoc);
-        // echo '</pre>';
-        return view('KHonline.ctkhonl', compact('ctkh_onl', 'all_daotao', 'all_baihoc'));
+        $payments = DB::table('payments')->where('makh_onl',$makh_onl)->where('p_user_id',$matk)->first();
+        if($payments){
+            Session::put('xacnhantt','OK');
+
+        }
+        else{
+            Session::put('xacnhantt',null);
+
+        }
+        //dd($payments);
+       return view('KHonline.ctkhonl', compact('ctkh_onl', 'all_daotao', 'all_baihoc'));
     }
     // Thanh toán khóa học
     public function payment($makh_onl)
@@ -513,7 +559,7 @@ class CourseController extends Controller
                 $payments['p_transaction_code'] = $vnpayData['vnp_TxnRef'];
                 $payments['p_user_id'] = $matk;
                 $payments['p_hocvien'] = $hocvien->tenhv;
-                $payments['p_makhonl'] =$makh;
+                $payments['makh_onl'] =$makh;
 
                 $payments['p_khonl'] =$tenkh->tenkh_onl;
                 $payments['p_money'] = $vnpayData['vnp_Amount']/100;
@@ -523,7 +569,6 @@ class CourseController extends Controller
                 // dd($payments)
                 DB::table('payments')->insert($payments);
                 $p_tenkhonl = $payments['p_khonl'];
-
                 Session::put('message', "Đã thêm!");
                 return view('KHonline.vnpay_return', compact('vnpayData', 'hocvien','p_tenkhonl'));
             } catch (Exception $e) {
@@ -568,36 +613,17 @@ class CourseController extends Controller
         $comment->save();
         return back();
     }
-    // Bài kiểm tra
-    public function list_questions()
-    {
-        $this->AuthLogin();
-        $question = DB::table('ds_cauhoi')->orderBy('id_cauhoi', 'desc')->get();
-    }
-    //Bài kiểm tra ***************************************************************
-    public function baitest($id_baitest)
-    {
-        $exam = DB::table('baitest')->where('id_baitest', $id_baitest)->get();
-        $question = DB::table('ds_cauhoi')->get();
-        return view('baitest.baitest', compact('exam', 'question'));
-        // $exam = DB::table('baitest')->where('id_baitest', $id_baitest)->get();
-        // $question = DB::table('ds_cauhoi')->orderBy('id_cauhoi', 'desc')->get()->toArray();
-        // $exam= DB::table('baitest')->get();
-        // //$data = json_encode();
-        // // foreach($question as $key => $value){
-        // //     echo $;
-        // // }
-        // // echo "<pre>";
-        // // print_r($question[0]->id_cauhoi);
-        // // echo '</pre>';
-        // return view('baitest.baitest')->with('question',$question)->with('exam',$exam);
-    }
+
+    //Bài kiểm tra admin ****
+
     public function add_exam()
     {
         $this->AuthLogin();
-        $data_daotao = DB::table('daotao')->get();
-        $manage_daotao = view('baitest.add_exam')->with('all_daotao', $data_daotao);
-        return view('welcome')->with('baitest.add_exam', $manage_daotao);
+        $all_daotao = DB::table('daotao')->get();
+        //$manage_daotao = view('baitest.add_exam')->with('all_daotao', $data_daotao);
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        return view('baitest.add_exam')->with('all_daotao',$all_daotao)->with('ct_quyen',$ct_quyen);
     }
     public function save_exam(Request $request)
     {
@@ -605,7 +631,6 @@ class CourseController extends Controller
         $data = array();
         $data['tenbaitest'] = $request->txtTenkt;
         $data['slcauhoi'] = $request->txtSl;
-        $data['thoigian'] = $request->txtThoigian;
         $data['diemso'] = $request->txtDiemso;
         $data['madaotao'] = $request->slDaotao;
         DB::table('baitest')->insert($data);
@@ -617,8 +642,10 @@ class CourseController extends Controller
         $this->AuthLogin();
 
         $all_exam = DB::table('baitest')->get();
-        $manager_exam = view('baitest.all_exam')->with('all_exam', $all_exam);
-        return view('welcome')->with('baitest.all_exam', $manager_exam);
+        //$manager_exam = view('baitest.all_exam')->with('all_exam', $all_exam);
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        return view('baitest.all_exam')->with('all_exam',$all_exam)->with('ct_quyen',$ct_quyen);
     }
     public function edit_exam($id_baitest)
     {
@@ -626,7 +653,9 @@ class CourseController extends Controller
         $edit_exam = DB::table('baitest')->where('id_baitest', $id_baitest)->get();
         $data_baitest = DB::table('baitest')->get();
         $data_daotao = DB::table('daotao')->get();
-        return view('baitest.edit_exam')->with('edit_exam', $edit_exam)->with('all_exam', $data_baitest)->with('all_daotao', $data_daotao);
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        return view('baitest.edit_exam')->with('edit_exam', $edit_exam)->with('all_exam', $data_baitest)->with('all_daotao', $data_daotao)->with('ct_quyen',$ct_quyen);
     }
     public function update_exam(Request $request, $id_baitest)
     {
@@ -634,7 +663,6 @@ class CourseController extends Controller
         $data = array();
         $data['tenbaitest'] = $request->txtTenkt;
         $data['slcauhoi'] = $request->txtSl;
-        $data['thoigian'] = $request->txtThoigian;
         $data['diemso'] = $request->txtDiemso;
         $data['madaotao'] = $request->slDaotao;
         DB::table('baitest')->where('id_baitest', $id_baitest)->update($data);
@@ -664,13 +692,11 @@ class CourseController extends Controller
     {
         $this->AuthLogin();
         Session::put('id_baitest', $id_baitest);
-        $exam = DB::table('baitest')
-            ->where('id_baitest', $id_baitest)
-            ->first();
+        $matk = Session::get('admin_id');
+        $exam = DB::table('baitest')->where('id_baitest', $id_baitest)->first();
         if ($exam) {
-            $ds_cauhoi = DB::table('ds_cauhoi')
-                ->select(
-                    // DB::raw('SUBSTR(Ten_cau_hoi, 1,30) as Ten_cau_hoi')
+            $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+            $ds_cauhoi = DB::table('ds_cauhoi')->select(
                     'id_cauhoi',
                     'cauhoi',
                     'luachona',
@@ -680,13 +706,8 @@ class CourseController extends Controller
                     'dapan',
                     'id_baitest'
                 )
-                ->where('id_baitest', $exam->id_baitest)
-                // ->toSql()
-                ->get();
-
-            // return response()->json($question_list);
-            return view('baitest.add_question')
-                ->with('ds_cauhoi', $ds_cauhoi);
+                ->where('id_baitest', $exam->id_baitest)->get();
+            return view('baitest.add_question')->with('ds_cauhoi', $ds_cauhoi)->with('ct_quyen', $ct_quyen);
         } else {
             return view('baitest.add_question');
         }
@@ -697,22 +718,22 @@ class CourseController extends Controller
         session(['link' => url()->previous()]);
         $question = DB::table('ds_cauhoi')->where('id_cauhoi', $id_cauhoi)->get();
         $exam = DB::table('baitest')->get();
-        return view('baitest.edit_question')->with('question', $question)->with('exam', $exam);
+        $matk = Session::get('admin_id');
+        $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
+        return view('baitest.edit_question')->with('question', $question)->with('exam', $exam)->with('ct_quyen', $ct_quyen);
     }
     public function update_question($id_cauhoi, Request $request)
     {
         $this->AuthLogin();
         $data = array();
         $data['cauhoi'] =  $request->cauhoi;
-        $data['F'] = $request->luachona;
+        $data['luachona'] = $request->luachona;
         $data['luachonb'] = $request->luachonb;
         $data['luachonc'] = $request->luachonc;
         $data['luachond'] = $request->luachond;
         $data['dapan'] = $request->dapan;
         DB::table('ds_cauhoi')->where('id_cauhoi', $id_cauhoi)->update($data);
         Session::put('message', "Đã sửa");
-        // return Redirect::to('/dashboard-employer');
-        //    return $data;
         return Redirect::to(session('link'));
     }
     public function listexam()
@@ -724,10 +745,50 @@ class CourseController extends Controller
         } else {
             $all_daotao = DB::table('daotao')->get();
             $all_baitest = DB::table('baitest')->get();
+            $matk = Session::get('admin_id');
+            $ct_quyen = DB::table('chitiet_quyen')->where('matk',$matk)->get();
             // echo '<pre>';
             // print_r($all_baitest);
             // echo '</pre>';
-            return view('baitest.listexam')->with('all_baitest', $all_baitest)->with('all_daotao', $all_daotao);
+            return view('baitest.listexam')->with('all_baitest', $all_baitest)->with('all_daotao', $all_daotao)->with('ct_quyen', $ct_quyen);
         }
+    }
+    // Bài kiểm tra front-end
+    public function baitest($id_baitest)
+    {   $all_daotao = DB::table('daotao')->get();
+        $exam = DB::table( 'baitest' )->where( 'id_baitest', $id_baitest )->first();
+            $question_list = DB::table( 'ds_cauhoi' )
+            ->where( 'id_baitest', $id_baitest )
+            ->select( 'id_cauhoi', 'cauhoi', 'luachona', 'luachonb', 'luachonc', 'luachond' ,'dapan')
+            ->inRandomOrder()
+            ->limit( $exam->slcauhoi )
+            ->get();
+            return view ( 'baitest.baitest' )
+            ->with( 'question_list', $question_list )
+            ->with( 'exam', $exam )->with('all_daotao',$all_daotao)
+            ;
+    }
+    public function check_question($id_baitest, Request $request ) {
+
+        $all_daotao = DB::table('daotao')->get();
+        $exam = DB::table( 'baitest' )->where( 'id_baitest', $id_baitest )->first();
+        $data = $request->all();
+        unset($data['_token']);
+
+        $dataResult = array();
+        foreach($data as $keys => $values){
+
+            $question_list = DB::table( 'ds_cauhoi' )
+            ->where( 'id_baitest', $id_baitest )->where('id_cauhoi',$keys)
+            ->select( 'id_cauhoi', 'cauhoi', 'luachona', 'luachonb', 'luachonc', 'luachond','dapan')
+            ->first();
+
+            array_push($dataResult, $question_list);
+
+        }
+        return view ( 'baitest.returnbaitest' )
+            ->with( 'data', $data )
+            ->with( 'dataResult', $dataResult)->with( 'exam', $exam )->with('all_daotao',$all_daotao)
+            ;
     }
 }

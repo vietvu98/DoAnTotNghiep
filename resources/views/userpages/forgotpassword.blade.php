@@ -124,9 +124,9 @@ button {
         @endif
         <form action="{{url('/recover_password')}}" method="POST">
             @csrf
-          <input type="email" id="email" class="email" name="email"required placeholder="&#xf0e0;   Email">
+          <input type="email" id="email" class="email" name="email" placeholder="&#xf0e0;   Email">
           <button id="loginButton" type="submit">Send</button>
-
+          <a href="{{ URL::to('/dangnhap')}}" class="btn btn-success rounded-pill "> Quay lại trang đăng nhập</a>
         </form>
       </div>
     </div>

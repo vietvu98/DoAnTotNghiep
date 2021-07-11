@@ -48,31 +48,7 @@
                                         </p>
                                     </video>
                                 </div>
-                                <div class="post-date">
-                                    Posted on <a href="#">Jan 19, 2020</a>
-                                </div>
                                 <h1 class="post-title">{!! nl2br($values->tenbh) !!}</h1>
-                                <div class="entry-meta mb-4">
-                                    <div class="meta-item entry-author">
-                                        <div class="icon">
-                                            <span class="mai-person"></span>
-                                        </div>
-                                        by <a href="#">Admin</a>
-                                    </div>
-                                    <div class="meta-item">
-                                        <div class="icon">
-                                            <span class="mai-pricetags"></span>
-                                        </div>
-                                        Category:
-                                        <a href="#">Business</a>,
-                                        <a href="#">Finances</a>
-                                    </div>
-                                    <div class="meta-item">
-                                        <div class="icon">
-                                            <span class="mai-chatbubble-ellipses"></span>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="entry-content" style="background-color: aliceblue; width: 1200px">
                                     <p><?php echo $values->lythuyet?></p>
                                 </div>

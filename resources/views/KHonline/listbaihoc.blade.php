@@ -8,13 +8,13 @@
                 <div class="container fg-white h-100">
                     <div class="row justify-content-center align-items-center text-center h-100">
                         <div class="col-lg-6">
-                            <h3 class="mb-4 fw-medium">Chi tiết khoá học</h3>
+                            <h3 class="mb-4 fw-medium">Danh sách bài giảng</h3>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb breadcrumb-dark justify-content-center bg-transparent">
-                                    <li class="breadcrumb-item"><a href="{{ URL::to('/ctkhonl/{makh_onl}') }}">Chi tiết
+                                    <li class="breadcrumb-item"><a href="{{url()->previous()}}">Chi tiết
                                             khoá học trực tuyến</a>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Bài học trực tuyến</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Danh sách bài giảng</li>
                                 </ol>
                             </nav>
                         </div>

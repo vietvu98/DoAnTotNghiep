@@ -40,9 +40,6 @@
                     <button type="submit" class="btn btn-primary btn-sm" >
                         <i class="fa fa-dot-circle-o"></i> Thêm bài học trực tuyến
                     </button>
-                    <a type="reset" class="btn btn-danger btn-sm"href="{{URL::to('/huy-baihoc')}}">
-                        <i class="fa fa-ban"></i> Huỷ
-                    </a>
                 </form>
             </div>
 

@@ -35,7 +35,7 @@
     <link href="{{ asset('public/backend/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet"
     type="text/css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <style>
+        <style>
     input[type=radio] {
     border: 2px;
     width: 20px;
@@ -134,38 +134,69 @@
         </div>
     </div>
     <div class="card-body">
-        <form action="{{URL::to('/check-question/'.$exam->id_baitest)}}" method="post" onsubmit="return kiemtra()">
-            {{-- action="{{URL::to('/send-exam/'.$exam->id_baitest)}}" --}}
-            @csrf
             <div class="row">
-                <?php $i =0;?>
-                @foreach ($question_list as $key =>$ql )
+                <?php $i=$temp =0;?>
+                @foreach ($dataResult as $key =>$ql )
                 <div class="col-sm-12 border border-danger">
                     <!-- radio -->
-                    <div class="alert alert-warning" style="margin-top: 15px; font-size: 20px;  font-weight: bold;">Câu <?php $i++; echo $i;?>:&ensp; <?php echo $ql->cauhoi;?></div>
+                <div class="alert alert-success" style="margin-top: 15px; font-size: 20px;  font-weight: bold;">Câu <?php $i++; echo $i;?>:&ensp; <?php echo $ql->cauhoi;?></div>
                     <div class="form-group">
-                        <div class="form-check alert alert-dark" class="question">
-                            <input id="answer" class="form-check-input" type="radio" name="{{$ql->id_cauhoi}}" value="a">
-                            <label class="form-check-label" style="font-size: 18px;">&ensp; <?php echo $ql->luachona?></label>
+
+                        <div class="form-check alert alert-light" class="question">
+                            <input id="answer" class="form-check-input" type="radio" name="{{$ql->id_cauhoi}}"
+                                value="a" <?php if($ql->dapan == 'a'){echo 'checked';} ?>>
+                            <label class="form-check-label" name="question"
+                                style="font-size: 18px;color:<?php  if($ql->dapan == 'a'){echo '#2ecc71';}
+                                                    if($data[$ql->id_cauhoi] == 'a' && $ql->dapan != 'a'){echo 'red';}
+                                                     ?>;">
+                                    &ensp;<?php echo $ql->luachona?>
+                            </label>
                         </div>
-                        <div class="form-check alert alert-dark" class="question">
-                            <input id="answer" class="form-check-input" type="radio" name="{{$ql->id_cauhoi}}" value="b">
-                            <label class="form-check-label" style="font-size: 18px;">&ensp; <?php echo $ql->luachonb?></label>
+
+                        <div class="form-check alert alert-light" class="question">
+                            <input id="answer" class="form-check-input" type="radio" name="{{$ql->id_cauhoi}}"
+                                value="b" <?php if($ql->dapan == 'b'){echo 'checked';} ?>>
+
+                            <label class="form-check-label"
+                                style="font-size: 18px;color:<?php  if($ql->dapan == 'b'){echo '#2ecc71';}
+                                                    if($data[$ql->id_cauhoi] == 'b' && $ql->dapan != 'b'){echo 'red';}
+                                                    ?>;">
+                                &ensp;<?php echo $ql->luachonb?>
+                            </label>
                         </div>
-                        <div class="form-check alert alert-dark" class="question">
-                            <input id="answer" class="form-check-input" type="radio" name="{{$ql->id_cauhoi}}" value="c">
-                            <label class="form-check-label" style="font-size: 18px;">&ensp; <?php echo $ql->luachonc?></label>
+
+                        <div class="form-check alert alert-light" class="question">
+                            <input id="answer" class="form-check-input" type="radio" name="{{$ql->id_cauhoi}}"
+                                value="c" <?php if($ql->dapan == 'c'){echo 'checked';} ?>>
+
+                            <label class="form-check-label"
+                                style="font-size: 18px;color:<?php  if($ql->dapan == 'c'){echo '#2ecc71';}
+                                                    if($data[$ql->id_cauhoi] == 'c' && $ql->dapan != 'c'){echo 'red';}
+                                                    ?>;">
+                                &ensp;<?php echo $ql->luachonc?>
+                            </label>
                         </div>
-                        <div class="form-check alert alert-dark" class="question">
-                            <input id="answer" class="form-check-input" type="radio" name="{{$ql->id_cauhoi}}" value="d">
-                            <label class="form-check-label" style="font-size: 18px;">&ensp; <?php echo $ql->luachond?></label>
+
+                        <div class="form-check alert alert-light" class="question">
+                            <input id="answer" class="form-check-input" type="radio" name="{{$ql->id_cauhoi}}"
+                                value="d" <?php if($ql->dapan == 'd'){echo 'checked';} ?>>
+
+                            <label class="form-check-label"
+                                style="font-size: 18px;color:<?php  if($ql->dapan == 'd'){echo '#2ecc71';}
+                                                    if($data[$ql->id_cauhoi] == 'd' && $ql->dapan != 'd'){echo 'red';}
+                                                    ?>;">
+                                &ensp;<?php echo $ql->luachond?>
+                            </label>
                         </div>
                     </div>
                 </div>
+                <?php if($ql->dapan == $data[$ql->id_cauhoi]){$temp++;} ?>
                 @endforeach
+
             </div>
-           <button type="submit" id="submit" class="btn btn-primary" >Kiểm tra</button>
-        </form>        
+            <div class="alert alert-success" style="text-align:center; margin-top: 15px; border: 2px solid green;">
+            <h5>Số câu đúng <?php echo $temp;?> / {{$exam->slcauhoi}}</h5>
+            </div>
     </div>
     <div class="page-footer-section bg-dark fg-white">
         <div class="container">
@@ -214,27 +245,7 @@
     <script src="{{ asset('public/frontend/khonl/js/vendor/slick.js') }}"></script>
     <script src="{{ asset('public/frontend/khonl/js/vendor/isotope.pkgd.min.js')}}"></script>
     <script src="{{ asset('public/frontend/khonl/js/main.js') }}"></script>
-    <script>
-    function kiemtra(){
-        var radios = document.querySelectorAll('input[type="radio"]:checked');
-        var value = radios.length;
-        if (value < {{$exam->slcauhoi}}) {
-             alert("Bạn vui lòng hoàn thành đầy đủ bài kiểm tra!");
-        return false;
-        }
-         
-    }
-   
 
-
-    //       function validate() {
-    //       if (document.getElementById('answer').checked) {
-    //         alert("checked");
-    //     } else {
-    //         alert("You didn't check it! Let me check it for you.");
-    //     }
-    // }
-    </script>
 </body>
 </html>
 

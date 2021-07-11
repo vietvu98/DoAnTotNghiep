@@ -15,20 +15,17 @@
                         <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtTendaotao" value="{{$value->tendaotao}}"
                                 placeholder="Tên khoá học" class="form-control" required></div>
                     </div>
-                    
+
                     <button type="submit" class="btn btn-primary btn-sm">
                         <i class="fa fa-dot-circle-o"></i> Sửa đào tạo
                     </button>
-                    <button type="reset" class="btn btn-danger btn-sm">
-                        <i class="fa fa-ban"></i> Huỷ
-                    </button>
                 </form>
                 @endforeach
-                
+
             </div>
-           
+
         </div>
-        
+
     </div>
 
 @endsection
