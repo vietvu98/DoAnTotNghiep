@@ -684,7 +684,8 @@ class CourseController extends Controller
     }
     public function import_csv(Request $request)
     {
-        $path = $request->file('file')->getRealPath();
+        $path1 = $request->file('file')->store('temp');
+        $path=storage_path('app').'/'.$path1;
         Excel::import(new ExcelImports, $path);
         return back();
     }

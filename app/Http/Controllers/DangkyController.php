@@ -19,6 +19,7 @@ class DangkyController extends Controller
         $data = array();
         $data['tentk'] = $request->tentk;
         $data['matkhau'] = md5($request->matkhau);
+        $data['email'] = $request->email;
         $data_hv = array();
         $data_hv['tenhv']= $request->txtTenhv;
         $data_hv['diachi'] = $request->txtDiachi;
