@@ -5,10 +5,10 @@
 - Lớp: Công nghệ thông tin K58
 ## Đề tài: Xây dựng Website Khóa học, Hỗ trợ kiểm tra và thanh toán online
 ## Phần 1: Công nghệ sử dụng
-•	Sử dụng ngôn ngữ lập trình xử lý BackEnd : PHP Laravel
-•	Lập trình phía FrontEnd sử dụng : HTML , CSS , JS , JQUERY
-•	Thiết kế cơ sở dữ liệu : MySQL
-•	Môi trường phát triển tích hợp: Visual studio code , XamPP
+- Sử dụng ngôn ngữ lập trình xử lý BackEnd : PHP Laravel
+- Lập trình phía FrontEnd sử dụng : HTML , CSS , JS , JQUERY
+- Thiết kế cơ sở dữ liệu : MySQL
+- Môi trường phát triển tích hợp: Visual studio code , XamPP
 ## Phần 2: Các chức năng đã hoàn thành
 Ở giao diện người quản trị:
 
