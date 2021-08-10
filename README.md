@@ -43,6 +43,6 @@ cập vào Website Khóa học. Có thể đăng kí người dùng hoặc có t
 Người dùng truy cập đường link https://khoahocshtp.webstudents.xyz/loginadmin để truy cập vào quản lý Website Khóa học. Người dùng có thể truy cập bằng tài khoản admin chính với tên đăng nhập vietvu, mật khẩu 123 sau đó có thể.
 - Chọn các chức năng cần sử dụng
 - Sau khi sử dụng, chọn Đăng xuất, chọn Thoát
-Người dùng truy cập đường link https://auth-db482.hostinger.com/index.php?db=u111695926_khoahocshtp để truy cập database host.
+Người dùng truy cập đường link https://auth-db482.hostinger.com/index.php?db=u111695926_khoahocshtp đăng nhập tài khoản u111695926_khoahocshtp và mật khẩu Khoahocshtp99 để truy cập database host.
 
 Xin cám ơn!
