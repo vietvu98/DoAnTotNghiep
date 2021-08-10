@@ -11,6 +11,7 @@
 •	Môi trường phát triển tích hợp: Visual studio code , XamPP
 ## Phần 2: Các chức năng đã hoàn thành
 Ở giao diện người quản trị:
+
 - Quản lý tài khoản: Cấp tài khoản, đổi mật khẩu, mã hóa mật khẩu.
 - Quản lý dữ liệu: Thông tin học viên, thông tin nhân viên, thông tin khóa học.
 - Quản lý học viên: Thông tin học viên theo học tại trung tâm và mua khóa học online.
@@ -23,6 +24,7 @@
 - Quản lý câu hỏi: Thêm, sửa, câu hỏi.
 - Quản lý thống kê: Thống kê học viên, khóa học, doanh thu.
 - Gửi gmail cảm ơn học viên đăng ký khóa học, xuất hóa đơn thanh toán khóa học online.
+
 Ở giao diện học viên:
 - Xem các khóa học tại trung tâm.
 - Tiến hành đăng ký các khóa học tại trung tâm.
