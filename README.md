@@ -38,11 +38,11 @@
 - Cơ sở dữ liệu chưa hoàn hảo và logic, dễ mắc một số lỗi đối với các trường hợp phức tạp ngoài thực tế.
 - Còn thiếu một số tính năng nâng cao để ứng dụng sử dụng tiện lợi hơn.
 ## Hướng dẫn sử dụng
-Người dùng truy cập đường link https://khoahocshtp.webstudents.xyz/ để truy
+- Người dùng truy cập đường link https://khoahocshtp.webstudents.xyz/ để truy
 cập vào Website Khóa học. Có thể đăng kí người dùng hoặc có thể truy cập bằng tài khoản với tên đăng nhập Viết Vũ, mật khẩu 123.
-Người dùng truy cập đường link https://khoahocshtp.webstudents.xyz/loginadmin để truy cập vào quản lý Website Khóa học. Người dùng có thể truy cập bằng tài khoản admin chính với tên đăng nhập vietvu, mật khẩu 123 sau đó có thể.
+- Người dùng truy cập đường link https://khoahocshtp.webstudents.xyz/loginadmin để truy cập vào quản lý Website Khóa học. Người dùng có thể truy cập bằng tài khoản admin chính với tên đăng nhập vietvu, mật khẩu 123 sau đó có thể.
 - Chọn các chức năng cần sử dụng
 - Sau khi sử dụng, chọn Đăng xuất, chọn Thoát
-Người dùng truy cập đường link https://auth-db482.hostinger.com/index.php?db=u111695926_khoahocshtp đăng nhập tài khoản u111695926_khoahocshtp và mật khẩu Khoahocshtp99 để truy cập database host.
+- Người dùng truy cập đường link https://auth-db482.hostinger.com/index.php?db=u111695926_khoahocshtp đăng nhập tài khoản u111695926_khoahocshtp và mật khẩu Khoahocshtp99 để truy cập database host.
 
 Xin cám ơn!
