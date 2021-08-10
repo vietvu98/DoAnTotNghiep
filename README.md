@@ -22,7 +22,7 @@
 - Quản lý bài kiểm tra: Thêm, sửa, xóa bài kiểm tra.
 - Quản lý câu hỏi: Thêm, sửa, câu hỏi.
 - Quản lý thống kê: Thống kê học viên, khóa học, doanh thu.
-- Gửi gmail cảm ơn học viên đăng ký khóa học, xuất hóa đơn thanh toán khóa học online
+- Gửi gmail cảm ơn học viên đăng ký khóa học, xuất hóa đơn thanh toán khóa học online.
 Ở giao diện học viên:
 - Xem các khóa học tại trung tâm.
 - Tiến hành đăng ký các khóa học tại trung tâm.
